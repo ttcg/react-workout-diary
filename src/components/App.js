@@ -3,6 +3,8 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
 
 import Header from './common/header';
+import Home from './home.js';
+import WorkoutListPage from './workouts/index.js';
 
 class App extends Component {
   render() {
@@ -12,10 +14,11 @@ class App extends Component {
           <Header />
           <header className="App-header">
 
-            <ul>
-              <li>Last workout</li>
-              <li>Total workout in this month</li>
-            </ul>
+            <Switch>
+              <Route path='(/|/home)' exact component={Home} />
+							<Route path='/workouts' exact component={WorkoutListPage} />
+						</Switch>
+
           </header>
         </React.Fragment>
       </BrowserRouter>
