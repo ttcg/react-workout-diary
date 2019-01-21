@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import {
-    Container
+    Container, Button
 } from 'reactstrap';
 
-import WorkoutService from '../services/workoutservice';
+import WorkoutService from '../services/workoutService';
 import WorkoutList from './workoutList';
+import WorkoutAdd from './workoutAdd'
 
 export default class Workouts extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            data: []
+            data: [],
+            add: false
         };
     }
 
@@ -27,17 +29,21 @@ export default class Workouts extends Component {
         this.getData();
     }
 
-    addNew = (e) =>  {
-        e.preventDefault();
-        alert("Add a new workout");
+    toggle = () => {
+        this.setState({
+            add: !this.state.add
+        });
     }
+
+    showAddNew = () => this.toggle();
 
     render() {
         return (
             <Container>
                 <h1>Workouts</h1>
-                <a href="#" onClick={this.addNew}>Add New Workout</a>
-                <WorkoutList items={this.state.data}/>
+                <Button onClick={this.showAddNew} color="link">Add New Workout</Button>
+                <WorkoutList items={this.state.data} />
+                <WorkoutAdd toggle={this.toggle} modal={this.state.add} />
             </Container>
         )
     }
