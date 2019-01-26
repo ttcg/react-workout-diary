@@ -18,7 +18,7 @@ const WorkoutList = ({items}) =>
         <tbody>
             {
                 items.map((item, i) =>
-                    <WorkoutRow item={item} i={i} />
+                    <WorkoutRow key={i} item={item} i={i} />
                 )
             }
         </tbody>

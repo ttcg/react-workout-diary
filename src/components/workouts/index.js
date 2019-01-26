@@ -13,7 +13,16 @@ export default class Workouts extends Component {
         super(props);
         this.state = {
             data: [],
-            add: false
+            add: false,
+            dataItem: {}
+        };
+    }
+
+    getInitialState() {
+        return {
+            date: '',
+            workoutType: undefined,
+            calories: ''
         };
     }
 
@@ -27,6 +36,9 @@ export default class Workouts extends Component {
 
     componentDidMount() {
         this.getData();
+        this.setState({
+            dataItem: this.getInitialState()
+        })
     }
 
     toggle = () => {
@@ -37,13 +49,21 @@ export default class Workouts extends Component {
 
     showAddNew = () => this.toggle();
 
+    updateItemState = event => {
+        console.log(event);
+		const field = event.target.name;
+		let item = this.state.dataItem;
+		item[field] = event.target.value;
+		return this.setState({ dataItem: item });
+	}
+
     render() {
         return (
             <Container>
                 <h1>Workouts</h1>
                 <Button onClick={this.showAddNew} color="link">Add New Workout</Button>
                 <WorkoutList items={this.state.data} />
-                <WorkoutAdd toggle={this.toggle} modal={this.state.add} />
+                <WorkoutAdd toggle={this.toggle} modal={this.state.add} item={this.state.dataItem} onChange={this.updateItemState} />
             </Container>
         )
     }

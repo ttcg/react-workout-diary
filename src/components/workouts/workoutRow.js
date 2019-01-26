@@ -2,7 +2,7 @@ import React from 'react';
 import Moment from 'react-moment';
 
 const WorkoutRow = ({item, i}) =>
-    <tr key={i}>
+    <tr>
         <th scope="row">{++i}</th>
         <td><Moment format="DD MMM YYYY" parse="DD/MM/YYYY">
             {item.date}

@@ -5,10 +5,11 @@ import {
 } from 'reactstrap';
 
 export default class WorkoutAdd extends Component {
+
     render() {
-        const {modal, toggle} = this.props;
+        const {modal, toggle, item, onChange} = this.props;
         return (
-            <Modal isOpen={modal} toggle centered>
+            <Modal isOpen={modal} toggle={toggle} centered>
                 <ModalHeader toggle={toggle}>Add New Workout</ModalHeader>
                 <ModalBody>
                     <Form>
@@ -16,8 +17,10 @@ export default class WorkoutAdd extends Component {
                             <Label for="Date">Date</Label>
                             <Input
                                 type="date"
-                                name="Date"
+                                name="date"
                                 id="Date"
+                                onChange={onChange}
+                                value={item.date}
                                 placeholder="date placeholder"
                             />
                         </FormGroup>
@@ -25,7 +28,9 @@ export default class WorkoutAdd extends Component {
                             <Label for="WorkoutType">Type</Label>
                             <Input
                                 type="select"
-                                name="WorkoutType"
+                                name="workoutType"
+                                onChange={onChange}
+                                value={item.workoutType}
                                 id="WorkoutType">
                                 <option>Running</option>
                                 <option>Cycling</option>
@@ -35,8 +40,10 @@ export default class WorkoutAdd extends Component {
                             <Label for="Calories">Calories</Label>
                             <Input
                                 type="number"
-                                name="Calories"
+                                name="calories"
                                 id="Calories"
+                                value={item.calories}
+                                onChange={onChange}
                                 placeholder="Calories burnt"
                             />
                         </FormGroup>
