@@ -7,7 +7,12 @@ import {
 export default class WorkoutAdd extends Component {
 
     render() {
-        const {modal, toggle, item, onChange} = this.props;
+        const {
+            modal, 
+            toggle, 
+            item, 
+            onChange,
+            onAddNew } = this.props;
         return (
             <Modal isOpen={modal} toggle={toggle} centered>
                 <ModalHeader toggle={toggle}>Add New Workout</ModalHeader>
@@ -50,7 +55,7 @@ export default class WorkoutAdd extends Component {
                     </Form>
                 </ModalBody>
                 <ModalFooter>
-                    <Button color="primary" onClick={toggle}>Save</Button>{' '}
+                    <Button color="primary" onClick={onAddNew}>Save</Button>{' '}
                     <Button color="secondary" onClick={toggle}>Cancel</Button>
                 </ModalFooter>
             </Modal>

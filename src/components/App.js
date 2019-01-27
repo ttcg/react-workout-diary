@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
-
+import es6Promise from 'es6-promise'; 
+import es6ObjectAssign from 'es6-object-assign';
 import Header from './common/header';
 import Home from './home.js';
 import WorkoutListPage from './workouts/index.js';
+
+es6Promise.polyfill();
+es6ObjectAssign.polyfill();
 
 class App extends Component {
   render() {

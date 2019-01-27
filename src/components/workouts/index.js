@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import {
     Container, Button
 } from 'reactstrap';
+import Moment from 'moment';
 
 import WorkoutService from '../services/workoutService';
 import WorkoutList from './workoutList';
-import WorkoutAdd from './workoutAdd'
+import WorkoutAdd from './workoutAdd';
 
 export default class Workouts extends Component {
 
@@ -21,7 +22,7 @@ export default class Workouts extends Component {
     getInitialState() {
         return {
             date: '',
-            workoutType: undefined,
+            workoutType: 'Running',
             calories: ''
         };
     }
@@ -50,12 +51,29 @@ export default class Workouts extends Component {
     showAddNew = () => this.toggle();
 
     updateItemState = event => {
-        console.log(event);
-		const field = event.target.name;
-		let item = this.state.dataItem;
-		item[field] = event.target.value;
-		return this.setState({ dataItem: item });
-	}
+        const field = event.target.name;
+        let item = this.state.dataItem;
+
+        item[field] = event.target.value;
+
+        return this.setState({ dataItem: item });
+    }
+
+    handleAddNew = () => {
+        let item = this.state.dataItem;
+        item['id'] = this.state.dataItem.length + 1;
+        item['date'] = Moment(item['date'], "YYYY-MM-DD").format('DD/MM/YYYY');
+
+        this.setState((prevState) => {
+            prevState.data.push(item);
+            return {
+                data: prevState.data,
+                dataItem: this.getInitialState()
+            };
+        });
+
+        this.toggle();
+    }
 
     render() {
         return (
@@ -63,7 +81,12 @@ export default class Workouts extends Component {
                 <h1>Workouts</h1>
                 <Button onClick={this.showAddNew} color="link">Add New Workout</Button>
                 <WorkoutList items={this.state.data} />
-                <WorkoutAdd toggle={this.toggle} modal={this.state.add} item={this.state.dataItem} onChange={this.updateItemState} />
+                <WorkoutAdd
+                    toggle={this.toggle}
+                    modal={this.state.add}
+                    item={this.state.dataItem}
+                    onChange={this.updateItemState}
+                    onAddNew={this.handleAddNew} />
             </Container>
         )
     }
