@@ -37,13 +37,7 @@ export default class Header extends React.Component {
                         </NavItem>                        
                         <NavItem>
                             <NavLink className="nav-link" activeClassName="active" to='/workouts' exact>List</NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink className="nav-link" activeClassName="active" to='/todo/add'>Add New</NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink className="nav-link" activeClassName="active" to='/about'>About</NavLink>
-                        </NavItem>
+                        </NavItem>                        
                     </Nav>
                 </Collapse>
             </Navbar>

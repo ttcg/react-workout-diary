@@ -4,7 +4,7 @@ import {
 } from 'reactstrap';
 import WorkoutRow from './workoutRow';
 
-const WorkoutList = ({items}) =>
+const WorkoutList = ({items, showEdit, handleDelete}) =>
     <Table striped>
         <thead>
             <tr>
@@ -12,13 +12,19 @@ const WorkoutList = ({items}) =>
                 <th>Date</th>
                 <th>Type</th>
                 <th>Calories</th>
+                <th></th>
             </tr>
         </thead>
 
         <tbody>
             {
                 items.map((item, i) =>
-                    <WorkoutRow key={i} item={item} i={i} />
+                    <WorkoutRow 
+                        key={i} 
+                        item={item} 
+                        i={i}
+                        showEdit={showEdit}
+                        handleDelete={handleDelete} />
                 )
             }
         </tbody>

@@ -3,10 +3,12 @@ import {
     Container, Button
 } from 'reactstrap';
 import Moment from 'moment';
+import uuid from 'uuid';
 
 import WorkoutService from '../services/workoutService';
 import WorkoutList from './workoutList';
 import WorkoutAdd from './workoutAdd';
+import WorkoutEdit from './workoutEdit';
 
 export default class Workouts extends Component {
 
@@ -15,13 +17,15 @@ export default class Workouts extends Component {
         this.state = {
             data: [],
             add: false,
+            edit: false,
             dataItem: {}
         };
     }
 
     getInitialState() {
         return {
-            date: '',
+            id: '',
+            date: Moment().format('YYYY-MM-DD'),
             workoutType: 'Running',
             calories: ''
         };
@@ -42,37 +46,79 @@ export default class Workouts extends Component {
         })
     }
 
-    toggle = () => {
+    toggleAdd = () => {
+        this.setState(prevState => ({
+            add: !prevState.add
+        }));
+    }
+
+    toggleEdit = () => {
+        this.setState(prevState => ({
+            edit: !prevState.edit
+        }));
+    }
+
+    showAddNew = () => {
+        this.toggleAdd();
         this.setState({
-            add: !this.state.add
+            dataItem: this.getInitialState()
         });
     }
 
-    showAddNew = () => this.toggle();
+    showEdit = (item) => {
+        this.toggleEdit();
+        this.setState({ dataItem: item });
+    }
 
     updateItemState = event => {
         const field = event.target.name;
+        let value = event.target.value;
         let item = this.state.dataItem;
+        console.log(value);
 
-        item[field] = event.target.value;
+        if (field === 'date')
+            value = Moment(value, 'YYYY-MM-DD').format('DD/MM/YYYY')
+
+        item[field] = value;
 
         return this.setState({ dataItem: item });
     }
 
     handleAddNew = () => {
         let item = this.state.dataItem;
-        item['id'] = this.state.dataItem.length + 1;
+        item['id'] = uuid.v4();
         item['date'] = Moment(item['date'], "YYYY-MM-DD").format('DD/MM/YYYY');
 
-        this.setState((prevState) => {
-            prevState.data.push(item);
-            return {
-                data: prevState.data,
-                dataItem: this.getInitialState()
-            };
+        this.setState({
+            data: [...this.state.data, item], //this.state.data.concat(item)
+            dataItem: this.getInitialState()
         });
 
-        this.toggle();
+        this.toggleAdd();
+    }
+
+    handleEdit = (id) => {
+        let item = this.state.dataItem;
+        //item['date'] = Moment(item['date'], "YYYY-MM-DD").format('DD/MM/YYYY');
+
+        const index = this.state.data.findIndex(item => item.id === id),
+            newList = [...this.state.data];
+        newList[index] = item;
+
+        this.setState({
+            data: newList,
+            dataItem: this.getInitialState()
+        });
+
+        this.toggleEdit();
+    }
+
+    handleDelete = (id) => {
+        if (window.confirm("Are you sure that you want to delete this item?")) {
+            this.setState(prevState => ({
+                data: prevState.data.filter(item => item.id !== id)
+            }));
+        }
     }
 
     render() {
@@ -80,13 +126,22 @@ export default class Workouts extends Component {
             <Container>
                 <h1>Workouts</h1>
                 <Button onClick={this.showAddNew} color="link">Add New Workout</Button>
-                <WorkoutList items={this.state.data} />
+                <WorkoutList
+                    items={this.state.data}
+                    showEdit={this.showEdit}
+                    handleDelete={this.handleDelete} />
                 <WorkoutAdd
-                    toggle={this.toggle}
+                    toggle={this.toggleAdd}
                     modal={this.state.add}
                     item={this.state.dataItem}
                     onChange={this.updateItemState}
                     onAddNew={this.handleAddNew} />
+                <WorkoutEdit
+                    toggle={this.toggleEdit}
+                    modal={this.state.edit}
+                    item={this.state.dataItem}
+                    onChange={this.updateItemState}
+                    onEdit={this.handleEdit} />
             </Container>
         )
     }
