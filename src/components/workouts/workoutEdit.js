@@ -30,8 +30,7 @@ export default class WorkoutEdit extends Component {
                                 name="date"
                                 id="Date"
                                 onChange={onChange}
-                                //value={item.date}
-                                value={Moment(item.date, 'DD/MM/YYYY').format('YYYY-MM-DD')}
+                                value={item.date}
                                 placeholder="date placeholder"
                             />
                         </FormGroup>

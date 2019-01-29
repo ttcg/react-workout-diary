@@ -5,7 +5,7 @@ import { Button } from 'reactstrap';
 const WorkoutRow = ({ item, i, showEdit, handleDelete }) =>
     <tr>
         <th scope="row">{++i}</th>
-        <td><Moment format="DD MMM YYYY" parse="DD/MM/YYYY">
+        <td><Moment format="DD MMM YYYY">
             {item.date}
         </Moment></td>
         <td>{item.workoutType}</td>

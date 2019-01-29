@@ -74,10 +74,6 @@ export default class Workouts extends Component {
         const field = event.target.name;
         let value = event.target.value;
         let item = this.state.dataItem;
-        console.log(value);
-
-        if (field === 'date')
-            value = Moment(value, 'YYYY-MM-DD').format('DD/MM/YYYY')
 
         item[field] = value;
 
@@ -87,7 +83,6 @@ export default class Workouts extends Component {
     handleAddNew = () => {
         let item = this.state.dataItem;
         item['id'] = uuid.v4();
-        item['date'] = Moment(item['date'], "YYYY-MM-DD").format('DD/MM/YYYY');
 
         this.setState({
             data: [...this.state.data, item], //this.state.data.concat(item)
@@ -99,7 +94,6 @@ export default class Workouts extends Component {
 
     handleEdit = (id) => {
         let item = this.state.dataItem;
-        //item['date'] = Moment(item['date'], "YYYY-MM-DD").format('DD/MM/YYYY');
 
         const index = this.state.data.findIndex(item => item.id === id),
             newList = [...this.state.data];
