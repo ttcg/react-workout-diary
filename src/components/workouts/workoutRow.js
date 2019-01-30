@@ -1,13 +1,13 @@
 import React from 'react';
-import Moment from 'react-moment';
+import ReactMoment from 'react-moment';
 import { Button } from 'reactstrap';
 
 const WorkoutRow = ({ item, i, showEdit, handleDelete }) =>
     <tr>
         <th scope="row">{++i}</th>
-        <td><Moment format="DD MMM YYYY">
+        <td><ReactMoment format="DD MMM YYYY">
             {item.date}
-        </Moment></td>
+        </ReactMoment></td>
         <td>{item.workoutType}</td>
         <td>{item.calories}</td>
         <td>

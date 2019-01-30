@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {
     Container, Button
 } from 'reactstrap';
-import Moment from 'moment';
 import uuid from 'uuid';
 
 import WorkoutService from '../services/workoutService';
@@ -15,7 +14,7 @@ export default class Workouts extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: [],
+            dataList: [],
             add: false,
             edit: false,
             dataItem: {}
@@ -25,7 +24,7 @@ export default class Workouts extends Component {
     getInitialState() {
         return {
             id: '',
-            date: Moment().format('YYYY-MM-DD'),
+            date: new Date(),
             workoutType: 'Running',
             calories: ''
         };
@@ -34,7 +33,7 @@ export default class Workouts extends Component {
     getData() {
         setTimeout(() => {
             this.setState({
-                data: WorkoutService.getWorkouts()
+                dataList: WorkoutService.getWorkouts()
             })
         }, 1)
     }
@@ -67,12 +66,20 @@ export default class Workouts extends Component {
 
     showEdit = (item) => {
         this.toggleEdit();
-        this.setState({ dataItem: item });
+        this.setState({ dataItem: Object.assign({}, item) });
+    }
+
+    onChangeDate = date => {
+        let item = this.state.dataItem;
+
+        item['date'] = date;
+
+        return this.setState({ dataItem: item });
     }
 
     updateItemState = event => {
         const field = event.target.name;
-        let value = event.target.value;
+        const value = event.target.value;
         let item = this.state.dataItem;
 
         item[field] = value;
@@ -85,7 +92,7 @@ export default class Workouts extends Component {
         item['id'] = uuid.v4();
 
         this.setState({
-            data: [...this.state.data, item], //this.state.data.concat(item)
+            dataList: [...this.state.dataList, item], //this.state.data.concat(item)
             dataItem: this.getInitialState()
         });
 
@@ -93,14 +100,13 @@ export default class Workouts extends Component {
     }
 
     handleEdit = (id) => {
-        let item = this.state.dataItem;
-
-        const index = this.state.data.findIndex(item => item.id === id),
-            newList = [...this.state.data];
+        const item = this.state.dataItem;
+        const index = this.state.dataList.findIndex(item => item.id === id);
+        let newList = [...this.state.dataList];
         newList[index] = item;
 
         this.setState({
-            data: newList,
+            dataList: newList,
             dataItem: this.getInitialState()
         });
 
@@ -110,7 +116,7 @@ export default class Workouts extends Component {
     handleDelete = (id) => {
         if (window.confirm("Are you sure that you want to delete this item?")) {
             this.setState(prevState => ({
-                data: prevState.data.filter(item => item.id !== id)
+                dataList: prevState.dataList.filter(item => item.id !== id)
             }));
         }
     }
@@ -121,21 +127,27 @@ export default class Workouts extends Component {
                 <h1>Workouts</h1>
                 <Button onClick={this.showAddNew} color="link">Add New Workout</Button>
                 <WorkoutList
-                    items={this.state.data}
+                    items={this.state.dataList}
                     showEdit={this.showEdit}
                     handleDelete={this.handleDelete} />
-                <WorkoutAdd
-                    toggle={this.toggleAdd}
-                    modal={this.state.add}
-                    item={this.state.dataItem}
-                    onChange={this.updateItemState}
-                    onAddNew={this.handleAddNew} />
-                <WorkoutEdit
-                    toggle={this.toggleEdit}
-                    modal={this.state.edit}
-                    item={this.state.dataItem}
-                    onChange={this.updateItemState}
-                    onEdit={this.handleEdit} />
+                {this.state.add &&
+                    <WorkoutAdd
+                        toggle={this.toggleAdd}
+                        modal={this.state.add}
+                        item={this.state.dataItem}
+                        onChange={this.updateItemState}
+                        onChangeDate={this.onChangeDate}
+                        onAddNew={this.handleAddNew} />
+                }
+                {this.state.edit &&
+                    <WorkoutEdit
+                        toggle={this.toggleEdit}
+                        modal={this.state.edit}
+                        item={this.state.dataItem}
+                        onChange={this.updateItemState}
+                        onChangeDate={this.onChangeDate}
+                        onEdit={this.handleEdit} />
+                }
             </Container>
         )
     }

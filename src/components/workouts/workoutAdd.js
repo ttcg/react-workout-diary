@@ -3,15 +3,18 @@ import {
     Modal, ModalBody, ModalHeader, ModalFooter, Button
     , Form, FormGroup, Label, Input
 } from 'reactstrap';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 export default class WorkoutAdd extends Component {
 
     render() {
         const {
-            modal, 
-            toggle, 
-            item, 
+            modal,
+            toggle,
+            item,
             onChange,
+            onChangeDate,
             onAddNew } = this.props;
         return (
             <Modal isOpen={modal} toggle={toggle} centered>
@@ -19,15 +22,16 @@ export default class WorkoutAdd extends Component {
                 <ModalBody>
                     <Form>
                         <FormGroup>
-                            <Label for="Date">Date</Label>
-                            <Input
-                                type="date"
+                            <Label for="Date">Date</Label><br />                            
+                            <DatePicker
                                 name="date"
                                 id="Date"
-                                onChange={onChange}
-                                value={item.date}
-                                placeholder="date placeholder"
-                            />
+                                className="form-control"
+                                selected={item.date}
+                                onChange={onChangeDate}
+                                dateFormat="dd/MM/yyyy"
+                                maxDate={new Date()}
+                            />                            
                         </FormGroup>
                         <FormGroup>
                             <Label for="WorkoutType">Type</Label>

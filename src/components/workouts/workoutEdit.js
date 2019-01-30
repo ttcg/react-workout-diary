@@ -3,6 +3,8 @@ import {
     Modal, ModalBody, ModalHeader, ModalFooter, Button
     , Form, FormGroup, Label, Input
 } from 'reactstrap';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import Moment from 'moment';
 
 export default class WorkoutEdit extends Component {
@@ -13,6 +15,7 @@ export default class WorkoutEdit extends Component {
             toggle,
             item,
             onChange,
+            onChangeDate,
             onEdit } = this.props;
         return (
             <Modal isOpen={modal} toggle={toggle} centered>
@@ -24,15 +27,16 @@ export default class WorkoutEdit extends Component {
                             <Input plaintext readOnly value={item.id} />
                         </FormGroup>
                         <FormGroup>
-                            <Label for="Date">Date</Label>
-                            <Input
-                                type="date"
+                            <Label for="Date">Date</Label><br />
+                            <DatePicker
                                 name="date"
                                 id="Date"
-                                onChange={onChange}
-                                value={item.date}
-                                placeholder="date placeholder"
-                            />
+                                className="form-control"
+                                selected={Moment(item.date).toDate()}
+                                onChange={onChangeDate}
+                                dateFormat="dd/MM/yyyy"
+                                maxDate={new Date()}
+                            /> 
                         </FormGroup>
                         <FormGroup>
                             <Label for="WorkoutType">Type</Label>
@@ -60,7 +64,7 @@ export default class WorkoutEdit extends Component {
                     </Form>
                 </ModalBody>
                 <ModalFooter>
-                    <Button color="primary" onClick={onEdit}>Save</Button>{' '}
+                    <Button color="primary" onClick={() => onEdit(item.id)}>Save</Button>{' '}
                     <Button color="secondary" onClick={toggle}>Cancel</Button>
                 </ModalFooter>
             </Modal>
