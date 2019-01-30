@@ -4,6 +4,7 @@ import './App.css';
 import es6Promise from 'es6-promise'; 
 import es6ObjectAssign from 'es6-object-assign';
 import Header from './common/header';
+import Footer from './common/footer';
 import Home from './home.js';
 import WorkoutListPage from './workouts/index.js';
 
@@ -24,6 +25,7 @@ class App extends Component {
 						</Switch>
 
           </header>
+          <Footer />
         </React.Fragment>
       </BrowserRouter>
     );
