@@ -11,8 +11,8 @@ const WorkoutRow = ({ item, i, showEdit, handleDelete }) =>
         <td>{item.workoutType}</td>
         <td>{item.calories}</td>
         <td>
-            <Button onClick={() => showEdit(item)} color="link">Edit</Button> |
-            <Button onClick={() => handleDelete(item.id)} color="link">Delete</Button></td>
+            <Button className="testEdit" onClick={() => showEdit(item)} color="link">Edit</Button> |
+            <Button className="testDelete" onClick={() => handleDelete(item.id)} color="link">Delete</Button></td>
     </tr>
 
 export default WorkoutRow;
