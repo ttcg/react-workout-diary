@@ -3,11 +3,26 @@ import {
     Modal, ModalBody, ModalHeader, ModalFooter, Button
     , Form, FormGroup, Label, Input
 } from 'reactstrap';
+import PropTypes from 'prop-types';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 export default class WorkoutAdd extends Component {
 
+    static propTypes = {
+        modal: PropTypes.bool.isRequired,
+        toggle: PropTypes.func.isRequired,
+        onChange: PropTypes.func.isRequired,
+        onChangeDate: PropTypes.func.isRequired,
+        onAddNew: PropTypes.func.isRequired,
+        item: PropTypes.object.isRequired,
+        maxDate: PropTypes.instanceOf(Date)
+    }
+
+    static defaultProps = {
+        maxDate: new Date()
+    }
+    
     render() {
         const {
             modal,
@@ -15,14 +30,16 @@ export default class WorkoutAdd extends Component {
             item,
             onChange,
             onChangeDate,
-            onAddNew } = this.props;
+            onAddNew,
+            maxDate } = this.props;
+
         return (
             <Modal isOpen={modal} toggle={toggle} centered>
                 <ModalHeader toggle={toggle}>Add New Workout</ModalHeader>
                 <ModalBody>
                     <Form>
                         <FormGroup>
-                            <Label for="Date">Date</Label><br />                            
+                            <Label for="Date">Date</Label><br />
                             <DatePicker
                                 name="date"
                                 id="Date"
@@ -30,8 +47,8 @@ export default class WorkoutAdd extends Component {
                                 selected={item.date}
                                 onChange={onChangeDate}
                                 dateFormat="dd/MM/yyyy"
-                                maxDate={new Date()}
-                            />                            
+                                maxDate={maxDate}
+                            />
                         </FormGroup>
                         <FormGroup>
                             <Label for="WorkoutType">Type</Label>

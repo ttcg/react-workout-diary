@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without crashing 1`] = `
+<BrowserRouter>
+  <Header />
+  <header
+    className="App-header"
+  >
+    <Switch>
+      <Route
+        component={[Function]}
+        exact={true}
+        path="(/|/home)"
+      />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/workouts"
+      />
+    </Switch>
+  </header>
+  <Footer />
+</BrowserRouter>
+`;

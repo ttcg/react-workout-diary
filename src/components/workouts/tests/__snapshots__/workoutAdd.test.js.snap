@@ -1,0 +1,177 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without crashing 1`] = `
+<Modal
+  autoFocus={true}
+  backdrop={true}
+  backdropTransition={
+    Object {
+      "mountOnEnter": true,
+      "timeout": 150,
+    }
+  }
+  centered={true}
+  fade={true}
+  isOpen={true}
+  keyboard={true}
+  modalTransition={
+    Object {
+      "timeout": 300,
+    }
+  }
+  onClosed={[Function]}
+  onOpened={[Function]}
+  role="dialog"
+  toggle={[MockFunction]}
+  zIndex={1050}
+>
+  <ModalHeader
+    charCode={215}
+    closeAriaLabel="Close"
+    tag="h5"
+    toggle={[MockFunction]}
+    wrapTag="div"
+  >
+    Add New Workout
+  </ModalHeader>
+  <ModalBody
+    tag="div"
+  >
+    <Form
+      tag="form"
+    >
+      <FormGroup
+        tag="div"
+      >
+        <Label
+          for="Date"
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Date
+        </Label>
+        <br />
+        <DatePicker
+          allowSameDay={false}
+          className="form-control"
+          dateFormat="dd/MM/yyyy"
+          dateFormatCalendar="LLLL yyyy"
+          disabled={false}
+          disabledKeyboardNavigation={false}
+          dropdownMode="scroll"
+          id="Date"
+          maxDate={2019-01-31T00:00:00.000Z}
+          monthsShown={1}
+          name="date"
+          nextMonthButtonLabel="Next month"
+          onBlur={[Function]}
+          onChange={[MockFunction]}
+          onClickOutside={[Function]}
+          onFocus={[Function]}
+          onInputClick={[Function]}
+          onInputError={[Function]}
+          onKeyDown={[Function]}
+          onMonthChange={[Function]}
+          onSelect={[Function]}
+          onYearChange={[Function]}
+          preventOpenOnFocus={false}
+          previousMonthButtonLabel="Previous Month"
+          readOnly={false}
+          renderDayContents={[Function]}
+          selected={2019-01-02T00:00:00.000Z}
+          shouldCloseOnSelect={true}
+          showTimeSelect={false}
+          timeCaption="Time"
+          timeIntervals={30}
+          withPortal={false}
+        />
+      </FormGroup>
+      <FormGroup
+        tag="div"
+      >
+        <Label
+          for="WorkoutType"
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Type
+        </Label>
+        <Input
+          id="WorkoutType"
+          name="workoutType"
+          onChange={[MockFunction]}
+          type="select"
+        >
+          <option>
+            Running
+          </option>
+          <option>
+            Cycling
+          </option>
+        </Input>
+      </FormGroup>
+      <FormGroup
+        tag="div"
+      >
+        <Label
+          for="Calories"
+          tag="label"
+          widths={
+            Array [
+              "xs",
+              "sm",
+              "md",
+              "lg",
+              "xl",
+            ]
+          }
+        >
+          Calories
+        </Label>
+        <Input
+          id="Calories"
+          name="calories"
+          onChange={[MockFunction]}
+          placeholder="Calories burnt"
+          type="number"
+        />
+      </FormGroup>
+    </Form>
+  </ModalBody>
+  <ModalFooter
+    tag="div"
+  >
+    <Button
+      color="primary"
+      onClick={[MockFunction]}
+      tag="button"
+    >
+      Save
+    </Button>
+     
+    <Button
+      color="secondary"
+      onClick={[MockFunction]}
+      tag="button"
+    >
+      Cancel
+    </Button>
+  </ModalFooter>
+</Modal>
+`;
