@@ -5,9 +5,10 @@ import WorkoutList from '../workoutList';
 
 describe('WorkoutListTest', () => {
     it('renders without crashing', () => {
-        const showEdit = jest.fn(),
-            handleDelete = jest.fn(),
-            items = [
+        const props = {
+            showEdit: jest.fn(),
+            handleDelete: jest.fn(),
+            items: [
                 {
                     "id": '38046275-fe56-414e-9c51-75e2fc84438e',
                     "workoutType": "Running",
@@ -21,12 +22,13 @@ describe('WorkoutListTest', () => {
                     "calories": 500
                 }
             ]
+        };
 
-        const component = shallow(<WorkoutList items={items} handleDelete={handleDelete} showEdit={showEdit} />);
+        const component = shallow(<WorkoutList {...props} />);
 
         const tree = toJson(component);
         expect(tree).toMatchSnapshot();
 
-        expect(component.find('WorkoutRow')).toHaveLength(items.length);
+        expect(component.find('WorkoutRow')).toHaveLength(props.items.length);
     });
 });
