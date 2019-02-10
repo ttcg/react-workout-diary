@@ -2,7 +2,14 @@ import React from 'react';
 import {
     Table
 } from 'reactstrap';
+import PropTypes from 'prop-types';
 import WorkoutRow from './workoutRow';
+
+const propTypes = {
+    showEdit: PropTypes.func.isRequired,
+    handleDelete: PropTypes.func.isRequired,
+    items: PropTypes.arrayOf(PropTypes.object).isRequired
+}
 
 const WorkoutList = ({items, showEdit, handleDelete}) =>
     <Table striped>
@@ -30,4 +37,6 @@ const WorkoutList = ({items, showEdit, handleDelete}) =>
         </tbody>
     </Table>
 
-export default WorkoutList
+WorkoutList.propTypes = propTypes;
+
+export default WorkoutList;

@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without crashing 1`] = `
+<tr>
+  <th
+    scope="row"
+  >
+    2
+  </th>
+  <td>
+    <t
+      ago={false}
+      calendar={false}
+      decimal={false}
+      element="time"
+      filter={[Function]}
+      format="DD MMM YYYY"
+      fromNow={false}
+      interval={60000}
+      onChange={[Function]}
+      titleFormat=""
+      toNow={false}
+      unit={null}
+      unix={false}
+      utc={false}
+      withTitle={false}
+    >
+      2019-01-02
+    </t>
+  </td>
+  <td>
+    Running
+  </td>
+  <td>
+    340
+  </td>
+  <td>
+    <Button
+      className="testEdit"
+      color="link"
+      onClick={[Function]}
+      tag="button"
+    >
+      Edit
+    </Button>
+     |
+    <Button
+      className="testDelete"
+      color="link"
+      onClick={[Function]}
+      tag="button"
+    >
+      Delete
+    </Button>
+  </td>
+</tr>
+`;

@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without crashing 1`] = `
+<footer
+  className="footer"
+>
+  <Container
+    tag="div"
+  >
+    <span
+      className="text-muted float-right"
+    >
+      v 1.0
+    </span>
+    <span
+      className="text-muted"
+    >
+      © 
+      <t
+        ago={false}
+        calendar={false}
+        decimal={false}
+        element="time"
+        filter={[Function]}
+        format="YYYY"
+        fromNow={false}
+        interval={60000}
+        onChange={[Function]}
+        titleFormat=""
+        toNow={false}
+        unit={null}
+        unix={false}
+        utc={false}
+        withTitle={false}
+      />
+       TTCG
+    </span>
+  </Container>
+</footer>
+`;

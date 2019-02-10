@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import toJson from 'enzyme-to-json';
 import WorkoutRow from '../workoutRow';
 
 it('renders without crashing', () => {
@@ -12,7 +13,10 @@ it('renders without crashing', () => {
         "calories": 340
     }
     
-    const component = shallow(<WorkoutRow i="1" item={item} handleDelete={handleDelete} showEdit={showEdit} />);
+    const component = shallow(<WorkoutRow i={1} item={item} handleDelete={handleDelete} showEdit={showEdit} />);
+
+    const tree = toJson(component);
+    expect(tree).toMatchSnapshot();
     
     component.find('Button.testEdit').simulate('click');
     expect(showEdit).toHaveBeenCalledTimes(1);

@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without crashing 1`] = `
+<Navbar
+  color="dark"
+  dark={true}
+  expand="md"
+  sticky="top"
+  tag="nav"
+>
+  <NavbarBrand
+    href="/"
+    tag="a"
+  >
+    React Workout Diary
+  </NavbarBrand>
+  <NavbarToggler
+    className="mr-2"
+    onClick={[Function]}
+    tag="button"
+    type="button"
+  />
+  <Collapse
+    appear={false}
+    enter={true}
+    exit={true}
+    in={false}
+    isOpen={false}
+    mountOnEnter={false}
+    navbar={true}
+    onEnter={[Function]}
+    onEntered={[Function]}
+    onEntering={[Function]}
+    onExit={[Function]}
+    onExited={[Function]}
+    onExiting={[Function]}
+    tag="div"
+    timeout={350}
+    unmountOnExit={false}
+  >
+    <Nav
+      className="mr-auto"
+      navbar={true}
+      tag="ul"
+      vertical={false}
+    >
+      <NavItem
+        tag="li"
+      >
+        <NavLink
+          activeClassName="active"
+          aria-current="page"
+          className="nav-link"
+          exact={true}
+          to="/"
+        >
+          Home
+        </NavLink>
+      </NavItem>
+      <NavItem
+        tag="li"
+      >
+        <NavLink
+          activeClassName="active"
+          aria-current="page"
+          className="nav-link"
+          exact={true}
+          to="/workouts"
+        >
+          List
+        </NavLink>
+      </NavItem>
+    </Nav>
+  </Collapse>
+</Navbar>
+`;

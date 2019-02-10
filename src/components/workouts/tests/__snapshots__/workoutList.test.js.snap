@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WorkoutListTest renders without crashing 1`] = `
+<Table
+  responsiveTag="div"
+  striped={true}
+  tag="table"
+>
+  <thead>
+    <tr>
+      <th>
+        #
+      </th>
+      <th>
+        Date
+      </th>
+      <th>
+        Type
+      </th>
+      <th>
+        Calories
+      </th>
+      <th />
+    </tr>
+  </thead>
+  <tbody>
+    <WorkoutRow
+      handleDelete={[MockFunction]}
+      i={0}
+      item={
+        Object {
+          "calories": 340,
+          "date": "2019-01-02",
+          "id": "38046275-fe56-414e-9c51-75e2fc84438e",
+          "workoutType": "Running",
+        }
+      }
+      key="0"
+      showEdit={[MockFunction]}
+    />
+    <WorkoutRow
+      handleDelete={[MockFunction]}
+      i={1}
+      item={
+        Object {
+          "calories": 500,
+          "date": "2019-01-02",
+          "id": "28046275-fe56-414e-9c51-75e2fc84438f",
+          "workoutType": "Running",
+        }
+      }
+      key="1"
+      showEdit={[MockFunction]}
+    />
+  </tbody>
+</Table>
+`;

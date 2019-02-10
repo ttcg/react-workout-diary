@@ -3,11 +3,26 @@ import {
     Modal, ModalBody, ModalHeader, ModalFooter, Button
     , Form, FormGroup, Label, Input
 } from 'reactstrap';
+import Moment from 'moment';
+import PropTypes from "prop-types";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import Moment from 'moment';
 
 export default class WorkoutEdit extends Component {
+
+    static propTypes = {
+        modal: PropTypes.bool.isRequired,
+        toggle: PropTypes.func.isRequired,
+        onChange: PropTypes.func.isRequired,
+        onChangeDate: PropTypes.func.isRequired,
+        onEdit: PropTypes.func.isRequired,
+        item: PropTypes.object.isRequired,
+        maxDate: PropTypes.instanceOf(Date)
+    }
+
+    static defaultProps = {
+        maxDate: new Date()
+    }
 
     render() {
         const {
@@ -16,7 +31,8 @@ export default class WorkoutEdit extends Component {
             item,
             onChange,
             onChangeDate,
-            onEdit } = this.props;
+            onEdit,
+            maxDate } = this.props;
         return (
             <Modal isOpen={modal} toggle={toggle} centered>
                 <ModalHeader toggle={toggle}>Edit Workout</ModalHeader>
@@ -35,7 +51,7 @@ export default class WorkoutEdit extends Component {
                                 selected={Moment(item.date).toDate()}
                                 onChange={onChangeDate}
                                 dateFormat="dd/MM/yyyy"
-                                maxDate={new Date()}
+                                maxDate={maxDate}
                             /> 
                         </FormGroup>
                         <FormGroup>
