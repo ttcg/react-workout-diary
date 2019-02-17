@@ -17,6 +17,11 @@ exports[`renders without crashing 1`] = `
         exact={true}
         path="/workouts"
       />
+      <Route
+        component={[Function]}
+        exact={true}
+        path="/workoutsreact"
+      />
     </Switch>
   </header>
   <Footer />

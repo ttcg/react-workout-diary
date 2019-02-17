@@ -67,7 +67,20 @@ exports[`renders without crashing 1`] = `
           exact={true}
           to="/workouts"
         >
-          List
+          List (Redux)
+        </NavLink>
+      </NavItem>
+      <NavItem
+        tag="li"
+      >
+        <NavLink
+          activeClassName="active"
+          aria-current="page"
+          className="nav-link"
+          exact={true}
+          to="/workoutsreact"
+        >
+          List (React)
         </NavLink>
       </NavItem>
     </Nav>

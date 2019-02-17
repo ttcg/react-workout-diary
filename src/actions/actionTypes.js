@@ -1,1 +1,3 @@
-export const ADD_WORKOUT = "ADD_WORKOUT";
+export const WORKOUT_ADD = "WORKOUT_ADD";
+export const WORKOUT_FETCH = "WORKOUT_FETCH";
+export const WORKOUT_DELETE = "WORKOUT_DELETE";

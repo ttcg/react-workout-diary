@@ -1,4 +1,8 @@
-import { ADD_WORKOUT } from "./actions/actionTypes";
+import { 
+  WORKOUT_ADD, 
+  WORKOUT_FETCH, 
+  WORKOUT_DELETE 
+} from "../actions/actionTypes";
 
 const initialState = {
   workouts: [
@@ -6,7 +10,7 @@ const initialState = {
       "id": '38046275-fe56-414e-9c51-75e2fc84438e',
       "workoutType": "Running",
       "date": "2019-01-02",
-      "calories": 340
+      "calories": 111
     },
     {
       "id": '6e8dbbc8-233f-41b1-ade3-ca568b35918c',
@@ -30,13 +34,24 @@ const initialState = {
 };
 
 function rootReducer(state = initialState, action) {
-  if (action.type === ADD_WORKOUT) {
-    state = Object.assign({}, state, {
-      workouts: state.workouts.concat(action.payload)
-    });
+  switch (action.type) {
+    case WORKOUT_ADD: {
+      return Object.assign({}, state, {
+        workouts: state.workouts.concat(action.payload)
+      });
+    }
+    case WORKOUT_FETCH: {
+      return Object.assign({}, state, {
+        workouts: state.workouts
+      });
+    }
+    case WORKOUT_DELETE: {
+      return Object.assign({}, state, {
+        workouts: state.workouts.filter(item => item.id !== action.payload)
+      });
+    }
+    default:
+      return state;
   }
-
-  return state;
-};
-
+}
 export default rootReducer;

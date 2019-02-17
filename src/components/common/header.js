@@ -36,8 +36,11 @@ export default class Header extends React.Component {
                             <NavLink className="nav-link" activeClassName="active" to='/' exact>Home</NavLink>
                         </NavItem>                        
                         <NavItem>
-                            <NavLink className="nav-link" activeClassName="active" to='/workouts' exact>List</NavLink>
-                        </NavItem>                        
+                            <NavLink className="nav-link" activeClassName="active" to='/workouts' exact>List (Redux)</NavLink>
+                        </NavItem>  
+                        <NavItem>
+                            <NavLink className="nav-link" activeClassName="active" to='/workoutsreact' exact>List (React)</NavLink>
+                        </NavItem>                     
                     </Nav>
                 </Collapse>
             </Navbar>
