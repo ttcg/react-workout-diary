@@ -1,7 +1,8 @@
-import { 
-  WORKOUT_ADD, 
-  WORKOUT_FETCH, 
-  WORKOUT_DELETE 
+import {
+  WORKOUT_ADD,
+  WORKOUT_FETCH,
+  WORKOUT_EDIT,
+  WORKOUT_DELETE
 } from "../actions/actionTypes";
 
 const initialState = {
@@ -49,6 +50,13 @@ function rootReducer(state = initialState, action) {
       return Object.assign({}, state, {
         workouts: state.workouts.filter(item => item.id !== action.payload)
       });
+    }
+    case WORKOUT_EDIT: {
+      let newList = [...state.workouts];
+      const index = newList.findIndex(item => item.id === action.payload.id);      
+      newList[index] = action.payload;
+
+      return Object.assign({}, state, { workouts: newList});
     }
     default:
       return state;

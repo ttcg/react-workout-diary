@@ -1,9 +1,7 @@
 import * as actionTypes from "./actionTypes";
 
-export function addWorkout(payload) {
-    return { type: actionTypes.WORKOUT_ADD, payload }
-};
+export const addWorkout = (payload) => ({ type: actionTypes.WORKOUT_ADD, payload });
 
-export function deleteWorkout(payload) {
-    return { type: actionTypes.WORKOUT_DELETE, payload }
-};
+export const deleteWorkout = (payload) => ({ type: actionTypes.WORKOUT_DELETE, payload });
+
+export const editWorkout = (payload) => ({ type: actionTypes.WORKOUT_EDIT, payload });

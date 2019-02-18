@@ -7,10 +7,11 @@ import {
 } from 'reactstrap';
 import WorkoutList from '../components/workouts/workoutList';
 import WorkoutAdd from '../components/workouts/workoutAdd';
-//import WorkoutEdit from '../components/workouts/workoutEdit';
+import WorkoutEdit from '../components/workouts/workoutEdit';
 import { 
     addWorkout,
-    deleteWorkout 
+    deleteWorkout,
+    editWorkout
 } from "../actions/index";
 
 export class workoutListPage extends Component {
@@ -60,7 +61,7 @@ export class workoutListPage extends Component {
 
     showEdit = (item) => {
         this.toggleEdit();
-        //this.setState({ dataItem: Object.assign({}, item) });
+        this.setState({ dataItem: Object.assign({}, item) });
     }
 
     onChangeDate = date => {
@@ -91,9 +92,18 @@ export class workoutListPage extends Component {
     }
 
     handleDelete = (id) => {
-        if (window.confirm("Are you sure that you want to delete this item?")) {
-            this.props.deleteWorkout(id)
-        }
+        if (window.confirm("Are you sure that you want to delete this item?")) 
+            this.props.deleteWorkout(id);        
+    }
+
+    handleEdit = () => {        
+        this.props.editWorkout(this.state.dataItem)
+
+        this.setState({
+            dataItem: this.getItemInitialState()
+        });
+
+        this.toggleEdit();
     }
     
 
@@ -118,15 +128,15 @@ export class workoutListPage extends Component {
                         onChangeDate={this.onChangeDate}
                         onAddNew={this.handleAddNew} />
                 }
-                {/* {this.state.edit &&
+                {this.state.edit &&
                     <WorkoutEdit
                         toggle={this.toggleEdit}
                         modal={this.state.edit}
                         item={this.state.dataItem}
-                        onChange={this.updateItemState}
+                        onChange={this.onChangeForm}
                         onChangeDate={this.onChangeDate}
                         onEdit={this.handleEdit} />
-                } */}
+                }
             </Container>
         )
     }
@@ -139,7 +149,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         addWorkout: item => dispatch(addWorkout(item)),
-        deleteWorkout: id => dispatch(deleteWorkout(id))
+        deleteWorkout: id => dispatch(deleteWorkout(id)),
+        editWorkout: item => dispatch(editWorkout(item))
       };
 }
 
