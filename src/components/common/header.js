@@ -34,13 +34,16 @@ export default class Header extends React.Component {
                     <Nav className="mr-auto" navbar>
                         <NavItem>
                             <NavLink className="nav-link" activeClassName="active" to='/' exact>Home</NavLink>
-                        </NavItem>                        
+                        </NavItem>     
+                        <NavItem>
+                            <NavLink className="nav-link" activeClassName="active" to='/workoutsapi' exact>List (Api)</NavLink>
+                        </NavItem>                   
                         <NavItem>
                             <NavLink className="nav-link" activeClassName="active" to='/workouts' exact>List (Redux)</NavLink>
                         </NavItem>  
                         <NavItem>
                             <NavLink className="nav-link" activeClassName="active" to='/workoutsreact' exact>List (React)</NavLink>
-                        </NavItem>                     
+                        </NavItem>        
                     </Nav>
                 </Collapse>
             </Navbar>

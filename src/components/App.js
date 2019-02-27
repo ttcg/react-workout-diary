@@ -8,6 +8,7 @@ import Footer from './common/footer';
 import Home from './home.js';
 import WorkoutListReact from '../components/workouts/index';
 import WorkoutListPage from '../pages/workoutListPage';
+import workoutListApiPage from '../pages/workoutListApiPage';
 
 es6Promise.polyfill();
 es6ObjectAssign.polyfill();
@@ -23,6 +24,7 @@ class App extends Component {
               <Switch>
                 <Route path='(/|/home)' exact component={Home} />
                 <Route path='/workouts' exact component={WorkoutListPage} />
+                <Route path='/workoutsapi' exact component={workoutListApiPage} />
                 <Route path='/workoutsreact' exact component={WorkoutListReact} />
               </Switch>
 

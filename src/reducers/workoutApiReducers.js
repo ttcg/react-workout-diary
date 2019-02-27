@@ -1,6 +1,7 @@
 import {
     WORKOUT_API_ADD,
-    WORKOUT_API_FETCH,
+    WORKOUT_API_FETCH_BEGIN,
+    WORKOUT_API_FETCH_SUCCESS,
     WORKOUT_API_EDIT,
     WORKOUT_API_DELETE
   } from "../actions/actionTypes";
@@ -16,10 +17,10 @@ import {
           workouts: action.payload
         });
       }
-      case WORKOUT_API_FETCH: {
-        return Object.assign({}, state, {
+      case WORKOUT_API_FETCH_SUCCESS: {
+        return { ...state, 
           workouts: action.payload
-        });
+        };
       }
     //   case WORKOUT_DELETE: {
     //     return Object.assign({}, state, {

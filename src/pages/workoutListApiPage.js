@@ -8,14 +8,15 @@ import {
 import WorkoutList from '../components/workouts/workoutList';
 import WorkoutAdd from '../components/workouts/workoutAdd';
 import WorkoutEdit from '../components/workouts/workoutEdit';
-import { 
+import {
     addWorkout,
     deleteWorkout,
-    editWorkout
-} from "../actions/workoutActions";
+    editWorkout,
+    fetchWorkout
+} from "../actions/workoutApiActions";
 
 export class workoutListPage extends Component {
-    
+
     static propTypes = {
         items: PropTypes.arrayOf(PropTypes.object).isRequired,
         addWorkout: PropTypes.func.isRequired,
@@ -24,7 +25,7 @@ export class workoutListPage extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {            
+        this.state = {
             add: false,
             edit: false,
             dataItem: {}
@@ -38,6 +39,10 @@ export class workoutListPage extends Component {
             workoutType: 'Running',
             calories: ''
         };
+    }
+
+    componentDidMount() {
+        this.props.fetchWorkout();
     }
 
     toggleAdd = () => {
@@ -92,11 +97,11 @@ export class workoutListPage extends Component {
     }
 
     handleDelete = (id) => {
-        if (window.confirm("Are you sure that you want to delete this item?")) 
-            this.props.deleteWorkout(id);        
+        if (window.confirm("Are you sure that you want to delete this item?"))
+            this.props.deleteWorkout(id);
     }
 
-    handleEdit = () => {        
+    handleEdit = () => {
         this.props.editWorkout(this.state.dataItem)
 
         this.setState({
@@ -105,7 +110,7 @@ export class workoutListPage extends Component {
 
         this.toggleEdit();
     }
-    
+
 
     render() {
         const {
@@ -113,11 +118,11 @@ export class workoutListPage extends Component {
         } = this.props;
         return (
             <Container>
-                <h1>Workouts (React-Redux)</h1>
+                <h1>Workouts (React-Redux with Api)</h1>
                 <Button onClick={this.showAddNew} color="link">Add New Workout</Button>
-                <WorkoutList 
-                    items={items} 
-                    handleDelete={this.handleDelete} 
+                <WorkoutList
+                    items={items}
+                    handleDelete={this.handleDelete}
                     showEdit={this.showEdit} />
                 {this.state.add &&
                     <WorkoutAdd
@@ -143,15 +148,16 @@ export class workoutListPage extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return { items: state.workouts.workouts };
+    return { items: state.workoutsFromApi.workouts };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
         addWorkout: item => dispatch(addWorkout(item)),
         deleteWorkout: id => dispatch(deleteWorkout(id)),
-        editWorkout: item => dispatch(editWorkout(item))
-      };
+        editWorkout: item => dispatch(editWorkout(item)),
+        fetchWorkout: () => dispatch(fetchWorkout())
+    };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(workoutListPage)

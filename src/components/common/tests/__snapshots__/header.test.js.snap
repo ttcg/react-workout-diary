@@ -65,6 +65,19 @@ exports[`renders without crashing 1`] = `
           aria-current="page"
           className="nav-link"
           exact={true}
+          to="/workoutsapi"
+        >
+          List (Api)
+        </NavLink>
+      </NavItem>
+      <NavItem
+        tag="li"
+      >
+        <NavLink
+          activeClassName="active"
+          aria-current="page"
+          className="nav-link"
+          exact={true}
           to="/workouts"
         >
           List (Redux)
