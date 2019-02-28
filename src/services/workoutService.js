@@ -24,14 +24,6 @@ function get(id) {
   });
 }
 
-function mark(id, data) {
-  return request({
-    url:    `/TodoTask/mark/${id}`,
-    method: 'PUT',
-    data: data
-  });
-}
-
 function remove(id) {
   return request({
     url:    `/TodoTask/${id}`,
