@@ -28,22 +28,24 @@ export default class Header extends React.Component {
     render() {
         return (
             <Navbar dark expand="md" sticky="top" color="dark">
-                <NavbarBrand href="/">React Workout Diary</NavbarBrand>
+                <NavLink className="nav-link" activeClassName="active" to='/' exact>
+                    <NavbarBrand href="/">React Workout Diary</NavbarBrand>
+                </NavLink>
                 <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
                 <Collapse isOpen={!this.state.collapsed} navbar>
                     <Nav className="mr-auto" navbar>
                         <NavItem>
                             <NavLink className="nav-link" activeClassName="active" to='/' exact>Home</NavLink>
-                        </NavItem>     
+                        </NavItem>
                         <NavItem>
                             <NavLink className="nav-link" activeClassName="active" to='/workoutsapi' exact>List (Api)</NavLink>
-                        </NavItem>                   
+                        </NavItem>
                         <NavItem>
                             <NavLink className="nav-link" activeClassName="active" to='/workouts' exact>List (Redux)</NavLink>
-                        </NavItem>  
+                        </NavItem>
                         <NavItem>
                             <NavLink className="nav-link" activeClassName="active" to='/workoutsreact' exact>List (React)</NavLink>
-                        </NavItem>        
+                        </NavItem>
                     </Nav>
                 </Collapse>
             </Navbar>

@@ -4,7 +4,7 @@ const apiPrefix = '/workouts'
 
 function add(data) {
   return request({
-    url:    `/TodoTask`,
+    url:    apiPrefix,
     method: 'POST',
     data: data
   });
@@ -19,28 +19,28 @@ function getAll () {
 
 function get(id) {
   return request({
-    url:    `/TodoTask/${id}`,
+    url:    `${apiPrefix}/${id}`,
     method: 'GET'
   });
 }
 
 function remove(id) {
   return request({
-    url:    `/TodoTask/${id}`,
+    url:    `${apiPrefix}/${id}`,
     method: 'DELETE'
   });
 }
 
 function reset(id) {
   return request({
-    url:    `/TodoTask/reset`,
+    url:    `${apiPrefix}/reset`,
     method: 'POST'
   });
 }
 
 function update(id, data) {
   return request({
-    url:    `/TodoTask/${id}`,
+    url:    `${apiPrefix}/${id}`,
     method: 'PUT',
     data: data
   });
