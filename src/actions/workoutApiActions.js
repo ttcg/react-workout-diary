@@ -1,5 +1,6 @@
 import * as actionTypes from "./actionTypes";
 import WorkoutService from "../services/workoutService";
+import { toast } from "react-toastify";
 
 const addWorkoutSuccess = () => ({ type: actionTypes.WORKOUT_API_ADD_SUCCESS });
 
@@ -21,6 +22,7 @@ export const deleteWorkout = (id) => {
     return function (dispatch) {        
         return WorkoutService.remove(id).then(() => {
             dispatch(deleteWorkoutSuccess());
+            toast.success("Item deleted successfully.");
             dispatch(fetchWorkout());
         });
     };
@@ -30,6 +32,7 @@ export const addWorkout = (payload) => {
     return function (dispatch) {        
         return WorkoutService.add(payload).then(() => {
             dispatch(addWorkoutSuccess());
+            toast.success("Item added successfully.");
             dispatch(fetchWorkout());
         });
     };
@@ -39,6 +42,7 @@ export const editWorkout = (payload) => {
     return function (dispatch) {        
         return WorkoutService.update(payload.id, payload).then(() => {
             dispatch(editWorkoutSuccess());
+            toast.success("Item updated successfully.");
             dispatch(fetchWorkout());
         });
     };

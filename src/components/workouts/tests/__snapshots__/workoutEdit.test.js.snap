@@ -92,6 +92,7 @@ exports[`renders without crashing 1`] = `
           disabledKeyboardNavigation={false}
           dropdownMode="scroll"
           id="Date"
+          inlineFocusSelectedMonth={false}
           maxDate={2019-01-31T00:00:00.000Z}
           monthsShown={1}
           name="date"

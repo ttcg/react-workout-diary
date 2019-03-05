@@ -9,18 +9,11 @@ exports[`renders without crashing 1`] = `
   tag="nav"
 >
   <Link
-    activeClassName="active"
-    className="nav-link"
-    exact={true}
+    className="navbar-brand"
     replace={false}
     to="/"
   >
-    <NavbarBrand
-      href="/"
-      tag="a"
-    >
-      React Workout Diary
-    </NavbarBrand>
+    React Workout Diary
   </Link>
   <NavbarToggler
     className="mr-2"
