@@ -8,11 +8,11 @@ exports[`renders without crashing 1`] = `
   sticky="top"
   tag="nav"
 >
-  <NavLink
+  <Link
     activeClassName="active"
-    aria-current="page"
     className="nav-link"
     exact={true}
+    replace={false}
     to="/"
   >
     <NavbarBrand
@@ -21,7 +21,7 @@ exports[`renders without crashing 1`] = `
     >
       React Workout Diary
     </NavbarBrand>
-  </NavLink>
+  </Link>
   <NavbarToggler
     className="mr-2"
     onClick={[Function]}

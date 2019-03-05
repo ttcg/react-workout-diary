@@ -3,32 +3,28 @@
 exports[`renders without crashing 1`] = `
 <BrowserRouter>
   <Header />
-  <header
-    className="App-header"
-  >
-    <Switch>
-      <Route
-        component={[Function]}
-        exact={true}
-        path="(/|/home)"
-      />
-      <Route
-        component={[Function]}
-        exact={true}
-        path="/workouts"
-      />
-      <Route
-        component={[Function]}
-        exact={true}
-        path="/workoutsapi"
-      />
-      <Route
-        component={[Function]}
-        exact={true}
-        path="/workoutsreact"
-      />
-    </Switch>
-  </header>
+  <Switch>
+    <Route
+      component={[Function]}
+      exact={true}
+      path="(/|/home)"
+    />
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/workouts"
+    />
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/workoutsapi"
+    />
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/workoutsreact"
+    />
+  </Switch>
   <Footer />
 </BrowserRouter>
 `;
