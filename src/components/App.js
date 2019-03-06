@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
 import es6Promise from 'es6-promise';
 import es6ObjectAssign from 'es6-object-assign';
 import { ToastContainer } from 'react-toastify';
+import LoadingSpinner from "./common/loadingSpinner";
+
 import Header from './common/header';
 import Footer from './common/footer';
 import Home from './home.js';
@@ -28,9 +31,10 @@ class App extends Component {
             <Route path='/workoutsapi' exact component={workoutListApiPage} />
             <Route path='/workoutsreact' exact component={WorkoutListReact} />
           </Switch>
-          <ToastContainer 
+          <ToastContainer
             autoClose={3000}
-            />
+          />          
+          {this.props.loading && <LoadingSpinner />}
           <Footer />
         </React.Fragment>
       </BrowserRouter>
@@ -38,4 +42,10 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    loading: state.ajaxStatus > 0
+  }
+}
+
+export default connect(mapStateToProps)(App);
