@@ -16,9 +16,11 @@
     position: fixed;
     padding: 20px;
     border: 1px solid #888;
-    top: 35%;
+    top: 45%;
     left: 45%;
     width: 10%;
+    font-size: 20pt;
+    font-weight: bold;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
