@@ -6,8 +6,8 @@ import {
     Container, Button
 } from 'reactstrap';
 import WorkoutList from '../components/workouts/workoutList';
-import WorkoutAdd from '../components/workouts/workoutAdd';
-import WorkoutEdit from '../components/workouts/workoutEdit';
+import WorkoutEditFormik from '../components/workouts/workoutEditFormik';
+import WorkoutAddFormik from '../components/workouts/workoutAddFormik';
 import {
     addWorkout,
     deleteWorkout,
@@ -59,9 +59,6 @@ export class workoutListPage extends Component {
 
     showAddNew = () => {
         this.toggleAdd();
-        this.setState({
-            dataItem: this.getItemInitialState()
-        });
     }
 
     showEdit = (item) => {
@@ -69,27 +66,9 @@ export class workoutListPage extends Component {
         this.setState({ dataItem: Object.assign({}, item) });
     }
 
-    onChangeDate = date => {
-        let item = this.state.dataItem;
-
-        item['date'] = date;
-
-        return this.setState({ dataItem: item });
-    }
-
-    onChangeForm = event => {
-        const field = event.target.name;
-        const value = event.target.value;
-        let item = this.state.dataItem;
-
-        item[field] = value;
-
-        return this.setState({ dataItem: item });
-    }
-
-    handleAddNew = () => {
-        let item = this.state.dataItem;
-        item['id'] = uuid.v4();
+    handleAddNew = (values) => {
+        let item = values;
+        item.id = uuid.v4();
 
         this.props.addWorkout(item);
 
@@ -101,8 +80,8 @@ export class workoutListPage extends Component {
             this.props.deleteWorkout(id);
     }
 
-    handleEdit = () => {
-        this.props.editWorkout(this.state.dataItem)
+    handleEdit = (values) => {
+        this.props.editWorkout(values)
 
         this.setState({
             dataItem: this.getItemInitialState()
@@ -110,7 +89,6 @@ export class workoutListPage extends Component {
 
         this.toggleEdit();
     }
-
 
     render() {
         const {
@@ -125,21 +103,16 @@ export class workoutListPage extends Component {
                     handleDelete={this.handleDelete}
                     showEdit={this.showEdit} />
                 {this.state.add &&
-                    <WorkoutAdd
+                    <WorkoutAddFormik
                         toggle={this.toggleAdd}
                         modal={this.state.add}
-                        item={this.state.dataItem}
-                        onChange={this.onChangeForm}
-                        onChangeDate={this.onChangeDate}
                         onAddNew={this.handleAddNew} />
                 }
                 {this.state.edit &&
-                    <WorkoutEdit
+                    <WorkoutEditFormik
                         toggle={this.toggleEdit}
                         modal={this.state.edit}
                         item={this.state.dataItem}
-                        onChange={this.onChangeForm}
-                        onChangeDate={this.onChangeDate}
                         onEdit={this.handleEdit} />
                 }
             </Container>
