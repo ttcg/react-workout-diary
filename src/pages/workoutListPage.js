@@ -5,6 +5,7 @@ import uuid from 'uuid';
 import {
     Container, Button
 } from 'reactstrap';
+import Moment from 'moment';
 import WorkoutList from '../components/workouts/workoutList';
 import WorkoutAdd from '../components/workouts/workoutAdd';
 import WorkoutEdit from '../components/workouts/workoutEdit';
@@ -61,6 +62,7 @@ export class workoutListPage extends Component {
 
     showEdit = (item) => {
         this.toggleEdit();
+        item.date = Moment(item.date).toDate()
         this.setState({ dataItem: Object.assign({}, item) });
     }
 

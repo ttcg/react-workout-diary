@@ -8,6 +8,7 @@ import WorkoutService from '../services/workoutService';
 import WorkoutList from './workoutList';
 import WorkoutAdd from './workoutAdd';
 import WorkoutEdit from './workoutEdit';
+import Moment from 'moment';
 
 export default class Workouts extends Component {
 
@@ -66,6 +67,7 @@ export default class Workouts extends Component {
 
     showEdit = (item) => {
         this.toggleEdit();
+        item.date = Moment(item.date).toDate()
         this.setState({ dataItem: Object.assign({}, item) });
     }
 

@@ -3,7 +3,6 @@ import {
     Modal, ModalBody, ModalHeader, ModalFooter, Button
     , Form, FormGroup, Label, Input
 } from 'reactstrap';
-import Moment from 'moment';
 import PropTypes from "prop-types";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -48,7 +47,7 @@ export default class WorkoutEdit extends Component {
                                 name="date"
                                 id="Date"
                                 className="form-control"
-                                selected={Moment(item.date).toDate()}
+                                selected={item.date}
                                 onChange={onChangeDate}
                                 dateFormat="dd/MM/yyyy"
                                 maxDate={maxDate}

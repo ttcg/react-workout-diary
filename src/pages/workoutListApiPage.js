@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import uuid from 'uuid';
+import Moment from 'moment';
 import {
     Container, Button
 } from 'reactstrap';
@@ -63,6 +64,7 @@ export class workoutListPage extends Component {
 
     showEdit = (item) => {
         this.toggleEdit();
+        item.date = Moment(item.date).toDate()
         this.setState({ dataItem: Object.assign({}, item) });
     }
 

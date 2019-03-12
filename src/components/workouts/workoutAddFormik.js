@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
-import { Formik, Form, Field } from 'formik'
+import { Formik, Form, Field, ErrorMessage } from 'formik'
 import {
     Modal, ModalBody, ModalHeader, ModalFooter, Button, FormGroup, Label
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 import DatePicker from "react-datepicker";
+import * as yup from 'yup';
+import Validations from '../constants/validations'
 import "react-datepicker/dist/react-datepicker.css";
 
 export default class workoutAddFormik extends Component {
@@ -36,6 +38,17 @@ export default class workoutAddFormik extends Component {
                     calories: ''
                 }}
                 onSubmit={(values) => { onAddNew(values); }}
+                validationSchema={yup.object().shape({
+                    calories: yup.number()
+                        .positive()
+                        .integer()
+                        .required(Validations.Required),
+                    date: yup
+                        .date()
+                        .default(() => (new Date()))
+                        .typeError(Validations.Required)
+                        .max(new Date(), Validations.DateNotInFuture)
+                })}
                 render={({ values, submitForm, setFieldValue }) => (
                     <Modal isOpen={modal} toggle={toggle} centered>
                         <ModalHeader toggle={toggle}>Add New Workout</ModalHeader>
@@ -52,6 +65,7 @@ export default class workoutAddFormik extends Component {
                                         maxDate={maxDate}
                                         onChange={value => setFieldValue('date', value)}
                                     />
+                                    <ErrorMessage name="date" className="text-danger" component="p" />
                                 </FormGroup>
                                 <FormGroup>
                                     <Label for="workoutType">Type</Label>
@@ -73,6 +87,7 @@ export default class workoutAddFormik extends Component {
                                         placeholder="Calories burnt"
                                         className="form-control"
                                     />
+                                    <ErrorMessage name="calories" className="text-danger" component="p" />
                                 </FormGroup>
                             </Form>
                         </ModalBody>
