@@ -8,7 +8,7 @@ import LoadingSpinner from "./common/loadingSpinner";
 
 import Header from './common/header';
 import Footer from './common/footer';
-import Home from './home.js';
+import HomePage from '../pages/homePage';
 import WorkoutListReact from '../components/workouts/index';
 import WorkoutListPage from '../pages/workoutListPage';
 import workoutListApiPage from '../pages/workoutListApiPage';
@@ -26,7 +26,7 @@ class App extends Component {
         <React.Fragment>
           <Header />
           <Switch>
-            <Route path='(/|/home)' exact component={Home} />
+            <Route path='(/|/home)' exact component={HomePage} />
             <Route path='/workouts' exact component={WorkoutListPage} />
             <Route path='/workoutsapi' exact component={workoutListApiPage} />
             <Route path='/workoutsreact' exact component={WorkoutListReact} />
