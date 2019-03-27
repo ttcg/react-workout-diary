@@ -49,7 +49,11 @@ export default class workoutAddFormik extends Component {
                         .typeError(Validations.Required)
                         .max(new Date(), Validations.DateNotInFuture)
                 })}
-                render={({ values, submitForm, setFieldValue }) => (
+                render={({ 
+                    values, 
+                    submitForm, 
+                    setFieldValue,
+                    isSubmitting }) => (
                     <Modal isOpen={modal} toggle={toggle} centered>
                         <ModalHeader toggle={toggle}>Add New Workout</ModalHeader>
                         <ModalBody>
@@ -92,7 +96,7 @@ export default class workoutAddFormik extends Component {
                             </Form>
                         </ModalBody>
                         <ModalFooter>
-                            <Button color="primary" type="submit" onClick={submitForm}>Save</Button>{' '}
+                            <Button color="primary" type="submit" onClick={submitForm} disabled={isSubmitting}>Save</Button>{' '}
                             <Button color="secondary" onClick={toggle}>Cancel</Button>
                         </ModalFooter>
                     </Modal>
