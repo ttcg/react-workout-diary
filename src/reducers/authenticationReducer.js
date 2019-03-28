@@ -1,15 +1,18 @@
 import { AUTHENTICATIONS } from '../actions/actionTypes';
 
 var initialState = {
-    currentUser: { userName: 'thetwai'}
+    currentUser: { userName: 'thetwai' }
 }
 
 const authenticationReducer = (state = initialState.currentUser, action) => {
-    if (action.type === AUTHENTICATIONS.LOGGED_IN) {
-        return action.payload;
+    switch (action.type) {
+        case AUTHENTICATIONS.LOGGED_IN:
+            return action.payload;
+        case AUTHENTICATIONS.LOGGED_OUT:
+            return { currentUser: { } };
+        default:
+            return state;
     }
-
-    return state;
 }
 
 export default authenticationReducer;
