@@ -37,26 +37,32 @@ const initialState = {
 function rootReducer(state = initialState, action) {
   switch (action.type) {
     case WORKOUT_ADD: {
-      return Object.assign({}, state, {
+      return {
+        ...state,
         workouts: state.workouts.concat(action.payload)
-      });
+      };
     }
     case WORKOUT_FETCH: {
-      return Object.assign({}, state, {
+      return {
+        ...state,
         workouts: state.workouts
-      });
+      };
     }
     case WORKOUT_DELETE: {
-      return Object.assign({}, state, {
+      return {
+        ...state,
         workouts: state.workouts.filter(item => item.id !== action.payload)
-      });
+      };
     }
     case WORKOUT_EDIT: {
       let newList = [...state.workouts];
-      const index = newList.findIndex(item => item.id === action.payload.id);      
+      const index = newList.findIndex(item => item.id === action.payload.id);
       newList[index] = action.payload;
 
-      return Object.assign({}, state, { workouts: newList});
+      return {
+        ...state,
+        workouts: newList
+      };
     }
     default:
       return state;
