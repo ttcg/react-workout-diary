@@ -9,6 +9,8 @@ export const authenticateUser = (payload) => {
         //dispatch(beginAjaxCall());
         return AuthenticationService.authenticate(payload).then(data => {
             dispatch(authenticateUserSuccess(data));
-        });
+        }).catch(err => {
+            dispatch({type: AUTHENTICATIONS.LOGGED_IN_FAIL, error: err});
+          });;
     };
 }

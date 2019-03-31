@@ -1,15 +1,27 @@
 import { AUTHENTICATIONS } from '../actions/actionTypes';
 
 var initialState = {
-    currentUser: { userName: 'thetwai' }
+    error: undefined,
+    currentUser: undefined
 }
 
-const authenticationReducer = (state = initialState.currentUser, action) => {
+const authenticationReducer = (state = initialState, action) => {
     switch (action.type) {
         case AUTHENTICATIONS.LOGGED_IN:
-            return action.payload;
+            return { 
+                ...state, 
+                currentUser: action.payload 
+            };
+        case AUTHENTICATIONS.LOGGED_IN_FAIL:
+            return { 
+                ...state,
+                currentUser: undefined, 
+                error: 'abc' 
+            };
         case AUTHENTICATIONS.LOGGED_OUT:
-            return { currentUser: { } };
+            return { 
+                ...state,
+                currentUser: undefined };
         default:
             return state;
     }

@@ -11,6 +11,9 @@ export class homePage extends Component {
     }
 
     render() {
+
+        const { authentication } = this.props;
+
         return (
             <React.Fragment>
                 <ul>
@@ -21,14 +24,20 @@ export class homePage extends Component {
                 <p>
                     Api Service Url: <a href={process.env.REACT_APP_ServiceUrl} target="_blank" rel="noopener noreferrer">{process.env.REACT_APP_ServiceUrl}</a>
                 </p>
-                <SignIn onSubmit={this.onSubmit} />
+                <SignIn 
+                    onSubmit={this.onSubmit} 
+                    currentUser={ authentication.currentUser } 
+                    errorMessage={ authentication.error }
+                    />
             </React.Fragment>
         )
     }
 }
 
 const mapStateToProps = (state) => {
-    return { authentication: state.authentication };
+    return { 
+        authentication: state.authentication
+    };
 };
 
 const mapDispatchToProps = (dispatch) => {
