@@ -2,12 +2,16 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import SignIn from '../components/home/signIn';
-import { authenticateUser } from '../actions/authenticateApiActions'
+import { authenticateUser, clearAuthenticationMessage } from '../actions/authenticateApiActions'
 
 export class homePage extends Component {
 
     onSubmit = values => {
         this.props.authenticate(values);
+    }
+
+    componentWillUnmount() {
+        this.props.clearAuthenticationMessage();
     }
 
     render() {
@@ -42,7 +46,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        authenticate: data => dispatch(authenticateUser(data))
+        authenticate: data => dispatch(authenticateUser(data)),
+        clearAuthenticationMessage: () => dispatch(clearAuthenticationMessage())
     };
 }
 

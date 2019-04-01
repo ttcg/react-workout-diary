@@ -8,9 +8,7 @@ function authenticate(data) {
             })
         }
         else {
-            reject({
-                isSuccessful: false
-            })
+            reject('Username or Password is wrong.')
         }
     })
 }

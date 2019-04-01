@@ -4,6 +4,8 @@ import AuthenticationService from "../services/authenticationService";
 
 const authenticateUserSuccess = (data) => ({ type: AUTHENTICATIONS.LOGGED_IN, payload: data });
 
+export const clearAuthenticationMessage = () => ({ type: AUTHENTICATIONS.CLEAR_AUTHENTICATION_MESSAGE });
+
 export const authenticateUser = (payload) => {
     return function (dispatch) {        
         //dispatch(beginAjaxCall());

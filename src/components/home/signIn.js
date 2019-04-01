@@ -46,7 +46,7 @@ export default class SignIn extends Component {
                                         <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
                                         {errorMessage &&
                                             <Alert color="danger">
-                                                Username or Password is wrong.
+                                                {errorMessage}
                                             </Alert>
                                         }
                                         <Label for="email" className="sr-only">Email address</Label>

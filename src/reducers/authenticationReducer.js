@@ -16,12 +16,16 @@ const authenticationReducer = (state = initialState, action) => {
             return { 
                 ...state,
                 currentUser: undefined, 
-                error: 'abc' 
+                error: action.error 
             };
         case AUTHENTICATIONS.LOGGED_OUT:
             return { 
                 ...state,
                 currentUser: undefined };
+        case AUTHENTICATIONS.CLEAR_AUTHENTICATION_MESSAGE:
+            return { 
+                ...state,
+                error: undefined };
         default:
             return state;
     }
