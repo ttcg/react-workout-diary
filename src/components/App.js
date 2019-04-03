@@ -5,13 +5,19 @@ import es6Promise from 'es6-promise';
 import es6ObjectAssign from 'es6-object-assign';
 import { ToastContainer } from 'react-toastify';
 
-import Header from './common/header';
-import Footer from './common/footer';
-import LoadingSpinner from "./common/loadingSpinner";
-import HomePage from '../pages/homePage';
-import WorkoutListReact from '../components/workouts/index';
-import WorkoutListPage from '../pages/workoutListPage';
-import workoutListApiPage from '../pages/workoutListApiPage';
+import {
+  Header,
+  Footer,
+  LoadingSpinner
+} from './common';
+
+import { WorkoutsReact } from '../components/workouts';
+
+import {
+  HomePage,
+  WorkoutListPage,
+  WorkoutListApiPage
+} from '../pages';
 
 import fontAwesome from './setupFontAwesome'
 
@@ -31,12 +37,12 @@ class App extends Component {
           <Switch>
             <Route path='(/|/home)' exact component={HomePage} />
             <Route path='/workouts' exact component={WorkoutListPage} />
-            <Route path='/workoutsapi' exact component={workoutListApiPage} />
-            <Route path='/workoutsreact' exact component={WorkoutListReact} />
+            <Route path='/workoutsapi' exact component={WorkoutListApiPage} />
+            <Route path='/workoutsreact' exact component={WorkoutsReact} />
           </Switch>
           <ToastContainer
             autoClose={3000}
-          />          
+          />
           {this.props.loading && <LoadingSpinner />}
           <Footer />
         </React.Fragment>

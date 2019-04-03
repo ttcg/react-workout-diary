@@ -1,5 +1,5 @@
 import { AUTHENTICATIONS } from "./actionTypes";
-import AuthenticationService from "../services/authenticationService";
+import { AuthenticationService } from "../services";
 import { beginAjaxCall } from "./ajaxStatusActions";
 
 const authenticateUserSuccess = (data) => ({ type: AUTHENTICATIONS.LOG_IN_SUCCESS, payload: data });

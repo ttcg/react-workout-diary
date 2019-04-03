@@ -1,47 +1,52 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import uuid from 'uuid';
+import Moment from 'moment';
+
 import {
     Container, Button
 } from 'reactstrap';
-import Moment from 'moment';
+
+import WorkoutService from "../services/workoutService";
 import {
     WorkoutList,
     WorkoutAdd,
     WorkoutEdit
-} from '../components/workouts';
+} from './index'
 
-import {
-    addWorkout,
-    deleteWorkout,
-    editWorkout
-} from "../actions/workoutActions";
-
-export class workoutListPage extends Component {
-
-    static propTypes = {
-        items: PropTypes.arrayOf(PropTypes.object).isRequired,
-        addWorkout: PropTypes.func.isRequired,
-        deleteWorkout: PropTypes.func.isRequired
-    }
+export default class WorkoutsReact extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
+            dataList: [],
             add: false,
             edit: false,
             dataItem: {}
         };
     }
 
-    getItemInitialState() {
+    getInitialState() {
         return {
             id: '',
             date: new Date(),
             workoutType: 'Running',
             calories: ''
         };
+    }
+
+    getData() {
+        setTimeout(() => {
+            this.setState({
+                dataList: WorkoutService.getWorkouts()
+            })
+        }, 1)
+    }
+
+    componentDidMount() {
+        this.getData();
+        this.setState({
+            dataItem: this.getInitialState()
+        })
     }
 
     toggleAdd = () => {
@@ -59,7 +64,7 @@ export class workoutListPage extends Component {
     showAddNew = () => {
         this.toggleAdd();
         this.setState({
-            dataItem: this.getItemInitialState()
+            dataItem: this.getInitialState()
         });
     }
 
@@ -77,7 +82,7 @@ export class workoutListPage extends Component {
         return this.setState({ dataItem: item });
     }
 
-    onChangeForm = event => {
+    updateItemState = event => {
         const field = event.target.name;
         const value = event.target.value;
         let item = this.state.dataItem;
@@ -91,45 +96,51 @@ export class workoutListPage extends Component {
         let item = this.state.dataItem;
         item['id'] = uuid.v4();
 
-        this.props.addWorkout(item);
+        this.setState({
+            dataList: [...this.state.dataList, item], //this.state.data.concat(item)
+            dataItem: this.getInitialState()
+        });
 
         this.toggleAdd();
     }
 
-    handleDelete = (id) => {
-        if (window.confirm("Are you sure that you want to delete this item?"))
-            this.props.deleteWorkout(id);
-    }
-
-    handleEdit = () => {
-        this.props.editWorkout(this.state.dataItem)
+    handleEdit = (id) => {
+        const item = this.state.dataItem;
+        const index = this.state.dataList.findIndex(item => item.id === id);
+        let newList = [...this.state.dataList];
+        newList[index] = item;
 
         this.setState({
-            dataItem: this.getItemInitialState()
+            dataList: newList,
+            dataItem: this.getInitialState()
         });
 
         this.toggleEdit();
     }
 
+    handleDelete = (id) => {
+        if (window.confirm("Are you sure that you want to delete this item?")) {
+            this.setState(prevState => ({
+                dataList: prevState.dataList.filter(item => item.id !== id)
+            }));
+        }
+    }
 
     render() {
-        const {
-            items
-        } = this.props;
         return (
             <Container>
-                <h1>Workouts (React-Redux)</h1>
+                <h1>Workouts (React Only)</h1>
                 <Button onClick={this.showAddNew} color="link">Add New Workout</Button>
                 <WorkoutList
-                    items={items}
-                    handleDelete={this.handleDelete}
-                    showEdit={this.showEdit} />
+                    items={this.state.dataList}
+                    showEdit={this.showEdit}
+                    handleDelete={this.handleDelete} />
                 {this.state.add &&
                     <WorkoutAdd
                         toggle={this.toggleAdd}
                         modal={this.state.add}
                         item={this.state.dataItem}
-                        onChange={this.onChangeForm}
+                        onChange={this.updateItemState}
                         onChangeDate={this.onChangeDate}
                         onAddNew={this.handleAddNew} />
                 }
@@ -138,7 +149,7 @@ export class workoutListPage extends Component {
                         toggle={this.toggleEdit}
                         modal={this.state.edit}
                         item={this.state.dataItem}
-                        onChange={this.onChangeForm}
+                        onChange={this.updateItemState}
                         onChangeDate={this.onChangeDate}
                         onEdit={this.handleEdit} />
                 }
@@ -146,17 +157,3 @@ export class workoutListPage extends Component {
         )
     }
 }
-
-const mapStateToProps = (state) => {
-    return { items: state.workouts.workouts };
-};
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        addWorkout: item => dispatch(addWorkout(item)),
-        deleteWorkout: id => dispatch(deleteWorkout(id)),
-        editWorkout: item => dispatch(editWorkout(item))
-    };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(workoutListPage)

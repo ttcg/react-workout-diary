@@ -6,9 +6,13 @@ import Moment from 'moment';
 import {
     Container, Button
 } from 'reactstrap';
-import WorkoutList from '../components/workouts/workoutList';
-import WorkoutEditFormik from '../components/workouts/workoutEditFormik';
-import WorkoutAddFormik from '../components/workouts/workoutAddFormik';
+
+import {
+    WorkoutList,
+    WorkoutEditFormik,
+    WorkoutAddFormik
+} from '../components/workouts';
+
 import {
     addWorkout,
     deleteWorkout,
@@ -16,7 +20,7 @@ import {
     fetchWorkout
 } from "../actions/workoutApiActions";
 
-export class workoutListPage extends Component {
+export class workoutListApiPage extends Component {
 
     static propTypes = {
         items: PropTypes.arrayOf(PropTypes.object).isRequired,
@@ -135,4 +139,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(workoutListPage)
+export default connect(mapStateToProps, mapDispatchToProps)(workoutListApiPage)

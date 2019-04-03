@@ -1,5 +1,5 @@
 import * as actionTypes from "./actionTypes";
-import WorkoutService from "../services/workoutService";
+import { WorkoutService } from "../services";
 import { toast } from "react-toastify";
 import { beginAjaxCall } from "./ajaxStatusActions";
 
