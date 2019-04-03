@@ -1,18 +1,21 @@
 import { AUTHENTICATIONS } from "./actionTypes";
 import AuthenticationService from "../services/authenticationService";
-//import { beginAjaxCall } from "./ajaxStatusActions";
+import { beginAjaxCall } from "./ajaxStatusActions";
 
-const authenticateUserSuccess = (data) => ({ type: AUTHENTICATIONS.LOGGED_IN, payload: data });
+const authenticateUserSuccess = (data) => ({ type: AUTHENTICATIONS.LOG_IN_SUCCESS, payload: data });
 
 export const clearAuthenticationMessage = () => ({ type: AUTHENTICATIONS.CLEAR_AUTHENTICATION_MESSAGE });
 
 export const authenticateUser = (payload) => {
-    return function (dispatch) {        
-        //dispatch(beginAjaxCall());
+    return function (dispatch) {     
+           
+        dispatch(beginAjaxCall());
+        dispatch({type: AUTHENTICATIONS.LOG_IN_BEGIN});
+
         return AuthenticationService.authenticate(payload).then(data => {
             dispatch(authenticateUserSuccess(data));
         }).catch(err => {
-            dispatch({type: AUTHENTICATIONS.LOGGED_IN_FAIL, error: err});
+            dispatch({type: AUTHENTICATIONS.LOG_IN_ERROR, error: err});
           });;
     };
 }

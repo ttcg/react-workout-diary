@@ -1,5 +1,6 @@
 function authenticate(data) {
     return new Promise((resolve, reject) => {
+        setTimeout(() => {
         if (data.email === "ttcg@gmail.com" && data.password === "ttcgreact") {
             return resolve({
                 isSuccessful: true,
@@ -10,6 +11,7 @@ function authenticate(data) {
         else {
             reject('Username or Password is wrong.')
         }
+    }, 2000)
     })
 }
 

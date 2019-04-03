@@ -32,6 +32,7 @@ export class homePage extends Component {
                     onSubmit={this.onSubmit} 
                     currentUser={ authentication.currentUser } 
                     errorMessage={ authentication.error }
+                    isAuthenticating={ authentication.isAuthenticating }
                     />
             </React.Fragment>
         )

@@ -12,7 +12,8 @@ export default class SignIn extends Component {
         const {
             onSubmit,
             currentUser,
-            errorMessage
+            errorMessage,
+            isAuthenticating
         } = this.props;
 
         return (
@@ -34,13 +35,11 @@ export default class SignIn extends Component {
                                 .required(Validations.Required)
                                 .min(8)
                         })}
-                        onSubmit={(values, actions) => {
+                        onSubmit={(values) => {
                             onSubmit(values);
-                            actions.setSubmitting(false);
                         }}
                         render={({
-                            submitForm,
-                            isSubmitting }) => (
+                            submitForm }) => (
                                 <div className="text-center">
                                     <Form className="form-signin">
                                         <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
@@ -68,7 +67,7 @@ export default class SignIn extends Component {
                                             <Label>
                                                 <Field type="checkbox" name="rememberMe" /> Remember me </Label>
                                         </div>
-                                        <Button color="primary" className="btn-block" onClick={submitForm} type="button" disabled={isSubmitting}>Sign in</Button>
+                                        <Button color="primary" className="btn-block" onClick={submitForm} type="button" disabled={isAuthenticating}>Sign in</Button>
                                     </Form>
                                 </div>)
                         }
@@ -76,6 +75,7 @@ export default class SignIn extends Component {
                     :
                     <div className="text-center">
                         Welcome <b>{currentUser.userName}!</b>
+                        <p><Button onClick={this.submitForm} color="link">Click here to Sign out</Button></p>
                     </div>
                 }
             </React.Fragment>
