@@ -4,6 +4,7 @@ import {
     Button, Label, Alert
 } from 'reactstrap';
 import * as yup from 'yup';
+import empty from 'is-empty'
 import Validations from '../constants/validations'
 
 export default class SignIn extends Component {
@@ -11,6 +12,7 @@ export default class SignIn extends Component {
 
         const {
             onSubmit,
+            onLogOut,
             currentUser,
             errorMessage,
             isAuthenticating
@@ -19,7 +21,7 @@ export default class SignIn extends Component {
         return (
 
             <React.Fragment>
-                {currentUser === undefined
+                {empty(currentUser)
                     ?
                     <Formik
                         initialValues={{
@@ -75,7 +77,7 @@ export default class SignIn extends Component {
                     :
                     <div className="text-center">
                         Welcome <b>{currentUser.userName}!</b>
-                        <p><Button onClick={this.submitForm} color="link">Click here to Sign out</Button></p>
+                        <p><Button onClick={onLogOut} color="link">Click here to Sign out</Button></p>
                     </div>
                 }
             </React.Fragment>

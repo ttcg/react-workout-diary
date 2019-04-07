@@ -11,7 +11,7 @@ function authenticate(data) {
         else {
             reject('Username or Password is wrong.')
         }
-    }, 2000)
+    }, 1000)
     })
 }
 
