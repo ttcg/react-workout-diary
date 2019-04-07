@@ -1,7 +1,7 @@
 import { AUTHENTICATIONS } from '../actions/actionTypes';
 
 var initialState = {
-    error: '',
+    error: null,
     currentUser: {},
     isAuthenticating: false
 }
@@ -17,7 +17,8 @@ const authenticationReducer = (state = initialState, action) => {
             return {
                 ...state,
                 currentUser: action.payload,
-                isAuthenticating: false
+                isAuthenticating: false,
+                error: null
             };
         case AUTHENTICATIONS.LOG_IN_ERROR:
             return {
@@ -27,11 +28,11 @@ const authenticationReducer = (state = initialState, action) => {
                 isAuthenticating: false
             };
         case AUTHENTICATIONS.LOGGED_OUT:
-            return initialState;
+            return { ...initialState };
         case AUTHENTICATIONS.CLEAR_AUTHENTICATION_MESSAGE:
             return {
                 ...state,
-                error: ''
+                error: null
             };
         default:
             return state;
