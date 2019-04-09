@@ -8,6 +8,10 @@ body {
   /* Margin bottom by footer height */
 }
 
+.header {
+  margin-top: 10px;
+}
+
 .footer {
   position: absolute;
   bottom: 0;

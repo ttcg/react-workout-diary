@@ -43,6 +43,7 @@ export class homePage extends Component {
                                 <li><NavLink className="nav-link" activeClassName="active" to='/workoutsreact' exact>Workouts (react)</NavLink></li>
                                 <li><NavLink className="nav-link" activeClassName="active" to='/workouts' exact>Workouts (react-redux)</NavLink></li>
                                 <li><NavLink className="nav-link" activeClassName="active" to='/workoutsapi' exact>Workouts (redux &amp; Api)</NavLink></li>
+                                <li><NavLink className="nav-link font-weight-bold" activeClassName="active" to='/securepage' exact>Secure Page</NavLink></li>
                             </ul>
                         </Col>
                     </Row>

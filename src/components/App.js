@@ -8,7 +8,8 @@ import { ToastContainer } from 'react-toastify';
 import {
   Header,
   Footer,
-  LoadingSpinner
+  LoadingSpinner,
+  UnAuthorised
 } from './common';
 
 import { WorkoutsReact } from '../components/workouts';
@@ -16,7 +17,8 @@ import { WorkoutsReact } from '../components/workouts';
 import {
   HomePage,
   WorkoutListPage,
-  WorkoutListApiPage
+  WorkoutListApiPage,
+  SecurePage
 } from '../pages';
 
 import fontAwesome from './setupFontAwesome'
@@ -34,12 +36,16 @@ class App extends Component {
       <BrowserRouter>
         <React.Fragment>
           <Header />
-          <Switch>
-            <Route path='(/|/home)' exact component={HomePage} />
-            <Route path='/workouts' exact component={WorkoutListPage} />
-            <Route path='/workoutsapi' exact component={WorkoutListApiPage} />
-            <Route path='/workoutsreact' exact component={WorkoutsReact} />
-          </Switch>
+          <div className="header">
+            <Switch>
+              <Route path='(/|/home)' exact component={HomePage} />
+              <Route path='/workouts' exact component={WorkoutListPage} />
+              <Route path='/workoutsapi' exact component={WorkoutListApiPage} />
+              <Route path='/workoutsreact' exact component={WorkoutsReact} />
+              <Route path='/unauthorised' exact component={UnAuthorised} />
+              <Route path='/securepage' exact component={SecurePage} />
+            </Switch>
+          </div>
           <ToastContainer
             autoClose={3000}
           />
