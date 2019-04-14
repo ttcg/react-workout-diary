@@ -8,6 +8,7 @@ import {
 } from 'reactstrap';
 
 import { NavLink, Link } from 'react-router-dom';
+import { Constants } from '../../utilities'
 
 export default class Header extends React.Component {
     constructor(props) {
@@ -35,13 +36,16 @@ export default class Header extends React.Component {
                             <NavLink className="nav-link" activeClassName="active" to='/' exact>Home</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink className="nav-link" activeClassName="active" to='/workoutsapi' exact>List (Api)</NavLink>
+                            <NavLink className="nav-link" activeClassName="active" to={Constants.Routes.WorkoutsApi} exact>Workouts (Api)</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink className="nav-link" activeClassName="active" to='/workouts' exact>List (Redux)</NavLink>
+                            <NavLink className="nav-link" activeClassName="active" to={Constants.Routes.Workouts} exact>Workouts (Redux)</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink className="nav-link" activeClassName="active" to='/workoutsreact' exact>List (React)</NavLink>
+                            <NavLink className="nav-link" activeClassName="active" to={Constants.Routes.WorkoutsReact} exact>Workouts (React)</NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink className="nav-link" activeClassName="active" to={Constants.Routes.About} exact>About</NavLink>
                         </NavItem>
                     </Nav>
                 </Collapse>

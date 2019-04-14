@@ -11,6 +11,8 @@ const editWorkoutSuccess = () => ({ type: actionTypes.WORKOUT_API_EDIT_SUCCESS }
 
 const fetchWorkoutSuccess = (payload) => ({ type: actionTypes.WORKOUT_API_FETCH_SUCCESS, payload });
 
+const resetWorkoutSuccess = () => ({ type: actionTypes.WORKOUT_API_RESET_SUCCESS });
+
 export const fetchWorkout = () => {
     return function (dispatch) {        
         dispatch(beginAjaxCall());
@@ -49,6 +51,16 @@ export const editWorkout = (payload) => {
             dispatch(editWorkoutSuccess());
             toast.success("Item updated successfully.");
             dispatch(fetchWorkout());
+        });
+    };
+}
+
+export const resetWorkouts = (payload) => {
+    return function (dispatch) {        
+        dispatch(beginAjaxCall());
+        return WorkoutService.reset().then(() => {
+            dispatch(resetWorkoutSuccess());
+            toast.success("Workouts data is reset successfully.");
         });
     };
 }

@@ -65,10 +65,10 @@ export default class SignIn extends Component {
                                             className="form-control"
                                             placeholder="Password" />
                                         <ErrorMessage name="password" className="text-danger" component="p" />
-                                        <div className="checkbox mb-3">
+                                        {/* <div className="checkbox mb-3">
                                             <Label>
                                                 <Field type="checkbox" name="rememberMe" /> Remember me </Label>
-                                        </div>
+                                        </div> */}
                                         <Button color="primary" className="btn-block" onClick={submitForm} type="button" disabled={isAuthenticating}>Sign in</Button>
                                     </Form>
                                 </div>)

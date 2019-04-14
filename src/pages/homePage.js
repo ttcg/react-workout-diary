@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
     Container,
     Row,
-    Col
+    Col,
+    Button,
+    Jumbotron
 } from 'reactstrap'
 import SignIn from '../components/home/signIn';
 import {
@@ -29,29 +31,42 @@ export class homePage extends Component {
 
         return (
             <React.Fragment>
-                <SignIn
-                    onSubmit={this.onSubmit}
-                    onLogOut={logOut}
-                    currentUser={authentication.currentUser}
-                    errorMessage={authentication.error}
-                    isAuthenticating={authentication.isAuthenticating}
-                />
+                <Jumbotron>
+                <Container>
+                    <SignIn
+                        onSubmit={this.onSubmit}
+                        onLogOut={logOut}
+                        currentUser={authentication.currentUser}
+                        errorMessage={authentication.error}
+                        isAuthenticating={authentication.isAuthenticating}
+                    />
+                </Container>
+                </Jumbotron>
                 <Container>
                     <Row>
-                        <Col md={{ size: 3, order: 1, offset: 0 }}>
-                            <ul>
-                                <li><NavLink className="nav-link" activeClassName="active" to='/workoutsreact' exact>Workouts (react)</NavLink></li>
-                                <li><NavLink className="nav-link" activeClassName="active" to='/workouts' exact>Workouts (react-redux)</NavLink></li>
-                                <li><NavLink className="nav-link" activeClassName="active" to='/workoutsapi' exact>Workouts (redux &amp; Api)</NavLink></li>
-                                <li><NavLink className="nav-link font-weight-bold" activeClassName="active" to='/securepage' exact>Secure Page</NavLink></li>
-                            </ul>
+                        <Col md="4">
+                            <h2>View Workouts</h2>
+                            <p>You can view the page which calls .Net Core webapi to display the list of workouts.</p>
+                            <p>
+                                <Link to="/workoutsapi"><Button color="secondary">View Workouts &raquo;</Button></Link>
+                            </p>
+                        </Col>
+                        <Col md="4">
+                            <h2>Secure Page</h2>
+                            <p>You will need to login first to browse to this Secure Page</p>
+                            <p>
+                                <Link to="/securepage"><Button color="secondary">Go to Secure Page &raquo;</Button></Link>
+                            </p>
+                        </Col>
+                        <Col md="4">
+                            <h2>About</h2>
+                            <p>Please click the button to view the detail of this project.</p>
+                            <p>
+                                <Link to="/about"><Button color="secondary">View Details &raquo;</Button></Link>
+                            </p>
                         </Col>
                     </Row>
                 </Container>
-                <p>
-                    Api Service Url: <a href={process.env.REACT_APP_ServiceUrl} target="_blank" rel="noopener noreferrer">{process.env.REACT_APP_ServiceUrl}</a>
-                </p>
-
             </React.Fragment >
         )
     }

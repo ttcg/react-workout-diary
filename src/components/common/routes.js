@@ -10,21 +10,24 @@ import {
     HomePage,
     WorkoutListPage,
     WorkoutListApiPage,
-    SecurePage
+    SecurePage,
+    AboutPage
 } from '../../pages';
 
 import { PrivateRoute } from '../../hocs';
+import { Constants } from '../../utilities';
 
 export default class routes extends Component {
     render() {
         return (
             <Switch>
                 <Route path='(/|/home)' exact component={HomePage} />
-                <Route path='/workouts' exact component={WorkoutListPage} />
-                <Route path='/workoutsapi' exact component={WorkoutListApiPage} />
-                <Route path='/workoutsreact' exact component={WorkoutsReact} />
-                <Route path='/unauthorised' exact component={UnAuthorised} />
-                <PrivateRoute path='/securepage' exact component={SecurePage} />
+                <Route path={Constants.Routes.Workouts} exact component={WorkoutListPage} />
+                <Route path={Constants.Routes.WorkoutsApi} exact component={WorkoutListApiPage} />
+                <Route path={Constants.Routes.WorkoutsReact} exact component={WorkoutsReact} />
+                <Route path={Constants.Routes.Unauthorised} exact component={UnAuthorised} />
+                <Route path={Constants.Routes.About} exact component={AboutPage} />
+                <PrivateRoute path={Constants.Routes.SecurePage} exact component={SecurePage} />
             </Switch>
         )
     }
