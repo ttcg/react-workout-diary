@@ -8,8 +8,8 @@ import { ToastContainer } from 'react-toastify';
 import {
 	Header,
 	Footer,
-	LoadingSpinner,
-	Routes
+	Routes,
+	LoadingSpinner
 } from './common';
 
 // import css
@@ -27,10 +27,6 @@ es6ObjectAssign.polyfill();
 class App extends Component {
 	render() {
 
-		const {
-			loading
-		} = this.props;
-
 		return (
 			<BrowserRouter>
 				<React.Fragment>
@@ -40,9 +36,9 @@ class App extends Component {
 					</div>
 					<ToastContainer
 						autoClose={3000}
-					/>
-					{loading && <LoadingSpinner />}
+					/>					
 					<Footer />
+					<LoadingSpinner />
 				</React.Fragment>
 			</BrowserRouter>
 		);
@@ -50,8 +46,7 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => {
-	return {
-		loading: state.ajaxStatus > 0,
+	return {		
 		authentication: state.authentication
 	}
 }
