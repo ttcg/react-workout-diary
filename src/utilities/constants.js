@@ -3,6 +3,7 @@ const Routes = {
     Workouts: '/workouts',
     WorkoutsApi: '/workoutsapi',
     WorkoutsReact: '/workoutsreact',
+    WorkoutsSaga: '/workoutsaga',
     Unauthorised: '/unauthorised',
     About: '/about',
     SecurePage: '/securepage'

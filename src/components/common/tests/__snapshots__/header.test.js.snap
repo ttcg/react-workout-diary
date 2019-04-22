@@ -79,6 +79,19 @@ exports[`renders without crashing 1`] = `
           aria-current="page"
           className="nav-link"
           exact={true}
+          to="/workoutsaga"
+        >
+          Workouts (Saga)
+        </NavLink>
+      </NavItem>
+      <NavItem
+        tag="li"
+      >
+        <NavLink
+          activeClassName="active"
+          aria-current="page"
+          className="nav-link"
+          exact={true}
           to="/workouts"
         >
           Workouts (Redux)

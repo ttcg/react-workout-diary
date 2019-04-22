@@ -39,6 +39,9 @@ export default class Header extends React.Component {
                             <NavLink className="nav-link" activeClassName="active" to={Constants.Routes.WorkoutsApi} exact>Workouts (Api)</NavLink>
                         </NavItem>
                         <NavItem>
+                            <NavLink className="nav-link" activeClassName="active" to={Constants.Routes.WorkoutsSaga} exact>Workouts (Saga)</NavLink>
+                        </NavItem>
+                        <NavItem>
                             <NavLink className="nav-link" activeClassName="active" to={Constants.Routes.Workouts} exact>Workouts (Redux)</NavLink>
                         </NavItem>
                         <NavItem>
