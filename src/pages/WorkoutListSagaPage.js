@@ -69,30 +69,12 @@ export class WorkoutListSagaPage extends Component {
         item.date = Moment(item.date).toDate()
         this.setState({ dataItem: Object.assign({}, item) });
     }
+    
+    handleAddNew = (values) => {
+        let item = values;
+        item.id = uuid.v4();
 
-    onChangeDate = date => {
-        let item = this.state.dataItem;
-
-        item['date'] = date;
-
-        return this.setState({ dataItem: item });
-    }
-
-    onChangeForm = event => {
-        const field = event.target.name;
-        const value = event.target.value;
-        let item = this.state.dataItem;
-
-        item[field] = value;
-
-        return this.setState({ dataItem: item });
-    }
-
-    handleAddNew = () => {
-        let item = this.state.dataItem;
-        item['id'] = uuid.v4();
-
-        //this.props.addWorkout(item);
+        this.props.addWorkout(item);
 
         this.toggleAdd();
     }
@@ -103,8 +85,8 @@ export class WorkoutListSagaPage extends Component {
         }
     }
 
-    handleEdit = () => {
-        //this.props.editWorkout(this.state.dataItem)
+    handleEdit = (values) => {
+        this.props.editWorkout(values)
 
         this.setState({
             dataItem: this.getItemInitialState()

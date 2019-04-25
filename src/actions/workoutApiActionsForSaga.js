@@ -1,6 +1,6 @@
 import * as actionTypes from "./actionTypes";
 
-export const addWorkout = (item) => ({ type: actionTypes.WORKOUT_API_ADD_SUCCESS, payload: item });
+export const addWorkout = (item) => ({ type: actionTypes.WORKOUT_API_ADD_BEGIN, payload: item });
 
 export const editWorkout = (item) => ({ type: actionTypes.WORKOUT_API_EDIT_BEGIN, payload: item });
 
