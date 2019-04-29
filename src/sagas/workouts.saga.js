@@ -38,7 +38,7 @@ function* addWorkoutSaga({ payload }) {
         yield put(beginAjaxCall());
         yield call(WorkoutService.add, payload);
 
-        yield call(toast.success, "Item added successfully.");
+        //yield call(toast.success, "Item added successfully.");
         yield put({ type: actionTypes.WORKOUT_API_ADD_SUCCESS });
         yield call(fetchWorkoutsSaga);
     }

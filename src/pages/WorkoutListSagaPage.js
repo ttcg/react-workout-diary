@@ -11,14 +11,15 @@ import {
 import {
     WorkoutList,
     WorkoutEditFormik,
-    WorkoutAddFormik
+    WorkoutAddFormikV2 as WorkoutAddFormik
 } from '../components/workouts';
 
 import {
     fetchWorkouts,
     deleteWorkout,
     addWorkout,
-    editWorkout
+    editWorkout,
+    clearError
 } from '../actions/workoutApiActionsForSaga'
 
 export class WorkoutListSagaPage extends Component {
@@ -32,20 +33,21 @@ export class WorkoutListSagaPage extends Component {
         };
     }
 
-    getItemInitialState() {
-        return {
-            id: '',
-            date: new Date(),
-            workoutType: 'Running',
-            calories: ''
-        };
-    }
+    // getItemInitialState() {
+    //     return {
+    //         id: '',
+    //         date: new Date(),
+    //         workoutType: 'Running',
+    //         calories: '10'
+    //     };
+    // }
 
     componentDidMount() {
         this.props.fetchWorkouts();
     }
 
     toggleAdd = () => {
+        this.props.clearError();
         this.setState(prevState => ({
             add: !prevState.add
         }));
@@ -59,9 +61,9 @@ export class WorkoutListSagaPage extends Component {
 
     showAddNew = () => {
         this.toggleAdd();
-        this.setState({
-            dataItem: this.getItemInitialState()
-        });
+        // this.setState({
+        //     dataItem: this.getItemInitialState()
+        // });
     }
 
     showEdit = (item) => {
@@ -73,10 +75,12 @@ export class WorkoutListSagaPage extends Component {
     handleAddNew = (values) => {
         let item = values;
         item.id = uuid.v4();
+        item.calories = '';
 
-        this.props.addWorkout(item);
+        setTimeout(() => 
+            this.props.addWorkout(item), 3000);
 
-        this.toggleAdd();
+        //this.toggleAdd();
     }
 
     handleDelete = (id) => {
@@ -88,16 +92,17 @@ export class WorkoutListSagaPage extends Component {
     handleEdit = (values) => {
         this.props.editWorkout(values)
 
-        this.setState({
-            dataItem: this.getItemInitialState()
-        });
+        // this.setState({
+        //     dataItem: this.getItemInitialState()
+        // });
 
         this.toggleEdit();
     }
 
     render() {
         const {
-            items
+            items,
+            error
         } = this.props;
         return (
             <Container>
@@ -111,7 +116,8 @@ export class WorkoutListSagaPage extends Component {
                     <WorkoutAddFormik
                         toggle={this.toggleAdd}
                         modal={this.state.add}
-                        onAddNew={this.handleAddNew} />
+                        onAddNew={this.handleAddNew}
+                        error={error} />
                 }
                 {this.state.edit &&
                     <WorkoutEditFormik
@@ -126,14 +132,18 @@ export class WorkoutListSagaPage extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return { items: state.workoutsFromApi.workouts };
+    return { 
+        items: state.workoutsFromApi.workouts,
+        error: state.workoutsFromApi.error
+    };
 };
 
 const mapDispatchToProps = {
     fetchWorkouts: fetchWorkouts,
     deleteWorkout: id => deleteWorkout(id),
     addWorkout: item => addWorkout(item),
-    editWorkout: item => editWorkout(item)
+    editWorkout: item => editWorkout(item),
+    clearError: clearError
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(WorkoutListSagaPage)
