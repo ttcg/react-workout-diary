@@ -35,7 +35,7 @@ class App extends Component {
 						<Routes />
 					</div>
 					<ToastContainer
-						autoClose={3000}
+						autoClose={2000}
 					/>					
 					<Footer />
 					<LoadingSpinner />

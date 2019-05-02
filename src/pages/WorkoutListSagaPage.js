@@ -1,16 +1,15 @@
 import React, { Component } from 'react'
-//import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import uuid from 'uuid';
 import Moment from 'moment';
 import {
-    Container, Button
+    Button,
+    Container
 } from 'reactstrap';
 
 import {
     WorkoutList,
-    WorkoutEditFormik,
+    WorkoutEditFormikV2 as WorkoutEditFormik,
     WorkoutAddFormikV2 as WorkoutAddFormik
 } from '../components/workouts';
 
@@ -21,49 +20,32 @@ import {
     editWorkout,
     clearError
 } from '../actions/workoutApiActionsForSaga'
+import {
+    closeModal,
+    openModal
+} from '../actions/modalActions'
+import { Modal } from '../utilities/constants'
 
 export class WorkoutListSagaPage extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            add: false,
-            edit: false,
-            dataItem: {}
-        };
-    }
-
-    // getItemInitialState() {
-    //     return {
-    //         id: '',
-    //         date: new Date(),
-    //         workoutType: 'Running',
-    //         calories: '10'
-    //     };
-    // }
 
     componentDidMount() {
         this.props.fetchWorkouts();
     }
 
     toggleAdd = () => {
-        this.props.clearError();
-        this.setState(prevState => ({
-            add: !prevState.add
-        }));
+        if (this.props.isAddModalOpen) this.props.clearError();
+        let toggleFunc = this.props.isAddModalOpen ? this.props.closeModal : this.props.openModal;
+        toggleFunc(Modal.AddWorkout)
     }
 
     toggleEdit = () => {
-        this.setState(prevState => ({
-            edit: !prevState.edit
-        }));
+        if (this.props.isEditModalOpen) this.props.clearError();
+        let toggleFunc = this.props.isEditModalOpen ? this.props.closeModal : this.props.openModal;
+        toggleFunc(Modal.EditWorkout)
     }
 
     showAddNew = () => {
         this.toggleAdd();
-        // this.setState({
-        //     dataItem: this.getItemInitialState()
-        // });
     }
 
     showEdit = (item) => {
@@ -71,60 +53,54 @@ export class WorkoutListSagaPage extends Component {
         item.date = Moment(item.date).toDate()
         this.setState({ dataItem: Object.assign({}, item) });
     }
-    
+
     handleAddNew = (values) => {
-        let item = values;
-        item.id = uuid.v4();
-        item.calories = '';
-
-        setTimeout(() => 
-            this.props.addWorkout(item), 3000);
-
-        //this.toggleAdd();
+        this.props.addWorkout(values);
     }
 
     handleDelete = (id) => {
-        if (window.confirm("Are you sure that you want to delete this item?")) {            
+        if (window.confirm("Are you sure that you want to delete this item?")) {
             this.props.deleteWorkout(id);
         }
     }
 
     handleEdit = (values) => {
-        this.props.editWorkout(values)
-
-        // this.setState({
-        //     dataItem: this.getItemInitialState()
-        // });
-
-        this.toggleEdit();
+        this.props.editWorkout(values);
     }
 
     render() {
         const {
             items,
-            error
+            error,
+            isSubmitting,
+            isAddModalOpen,
+            isEditModalOpen
         } = this.props;
+
         return (
             <Container>
-                <h1>Workouts (Redux-Saga)</h1>           
-                <Button onClick={this.showAddNew} color="link">Add New Workout</Button>     
+                <h1>Workouts (Redux-Saga)</h1>
+                <Button onClick={this.showAddNew} color="link">Add New Workout</Button>
                 <WorkoutList
                     items={items}
                     handleDelete={this.handleDelete}
                     showEdit={this.showEdit} />
-                {this.state.add &&
+                {isAddModalOpen &&
                     <WorkoutAddFormik
                         toggle={this.toggleAdd}
-                        modal={this.state.add}
+                        modal={isAddModalOpen}
                         onAddNew={this.handleAddNew}
-                        error={error} />
+                        error={error}
+                        isSubmitting={isSubmitting} />
                 }
-                {this.state.edit &&
+                {isEditModalOpen &&
                     <WorkoutEditFormik
                         toggle={this.toggleEdit}
-                        modal={this.state.edit}
+                        modal={isEditModalOpen}
                         item={this.state.dataItem}
-                        onEdit={this.handleEdit} />
+                        onEdit={this.handleEdit}
+                        error={error}
+                        isSubmitting={isSubmitting} />
                 }
             </Container>
         )
@@ -132,9 +108,12 @@ export class WorkoutListSagaPage extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return { 
+    return {
         items: state.workoutsFromApi.workouts,
-        error: state.workoutsFromApi.error
+        error: state.workoutsFromApi.error,
+        isSubmitting: state.workoutsFromApi.isSubmitting,
+        isEditModalOpen: state.modal.EditWorkoutModal,
+        isAddModalOpen: state.modal.AddWorkoutModal,
     };
 };
 
@@ -143,7 +122,9 @@ const mapDispatchToProps = {
     deleteWorkout: id => deleteWorkout(id),
     addWorkout: item => addWorkout(item),
     editWorkout: item => editWorkout(item),
-    clearError: clearError
+    clearError: clearError,
+    openModal: id => openModal(id),
+    closeModal: id => closeModal(id)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(WorkoutListSagaPage)

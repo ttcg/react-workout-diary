@@ -12,6 +12,7 @@ import {
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 import DatePicker from "react-datepicker";
+import uuid from 'uuid';
 import * as yup from 'yup';
 import Validations from '../constants/validations'
 import "react-datepicker/dist/react-datepicker.css";
@@ -22,7 +23,9 @@ export default class workoutAddFormik extends Component {
         modal: PropTypes.bool.isRequired,
         toggle: PropTypes.func.isRequired,
         onAddNew: PropTypes.func.isRequired,
-        maxDate: PropTypes.instanceOf(Date)
+        maxDate: PropTypes.instanceOf(Date),
+        isSubmitting: PropTypes.bool.isRequired,
+        error: PropTypes.object
     }
 
     static defaultProps = {
@@ -35,19 +38,19 @@ export default class workoutAddFormik extends Component {
             toggle,
             onAddNew,
             maxDate,
-            error } = this.props;
+            error,
+            isSubmitting } = this.props;
 
         return (
             <Formik
                 initialValues={{
-                    id: '',
+                    id: uuid.v4(),
                     date: new Date(),
                     workoutType: 'Running',
-                    calories: '10'
+                    calories: ''
                 }}
-                onSubmit={(values, {setSubmitting}) => { 
+                onSubmit={(values) => { 
                     onAddNew(values); 
-                    setSubmitting(false)
                 }}
                 validationSchema={yup.object().shape({
                     calories: yup.number()
@@ -63,8 +66,7 @@ export default class workoutAddFormik extends Component {
                 render={({
                     values,
                     submitForm,
-                    setFieldValue,
-                    isSubmitting }) => (
+                    setFieldValue }) => (
                         <Modal isOpen={modal} toggle={toggle} centered>
                             <ModalHeader toggle={toggle}>Add New Workout</ModalHeader>
                             <ModalBody>

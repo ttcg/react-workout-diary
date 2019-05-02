@@ -9,6 +9,11 @@ const Routes = {
     SecurePage: '/securepage'
 }
 
+export const Modal = {
+    AddWorkout: "AddWorkoutModal",
+    EditWorkout: "EditWorkoutModal"
+}
+
 const Constants = {
     Routes
 }

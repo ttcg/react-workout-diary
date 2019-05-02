@@ -1,12 +1,15 @@
 import {
     call,
     put,
-    takeLatest
+    takeLatest,
+    delay
 } from 'redux-saga/effects';
 import { toast } from "react-toastify";
 import * as actionTypes from "../actions/actionTypes";
 import { WorkoutService } from "../services";
 import { beginAjaxCall } from '../actions/ajaxStatusActions'
+import { closeModal } from '../actions/modalActions'
+import { Modal } from '../utilities/constants'
 
 function* fetchWorkoutsSaga() {
     yield put(beginAjaxCall());
@@ -36,9 +39,11 @@ function* deleteWorkoutSaga({ id }) {
 function* addWorkoutSaga({ payload }) {
     try {
         yield put(beginAjaxCall());
+        yield delay(1000)
         yield call(WorkoutService.add, payload);
 
-        //yield call(toast.success, "Item added successfully.");
+        yield call(toast.success, "Item added successfully.");
+        yield put(closeModal(Modal.AddWorkout));
         yield put({ type: actionTypes.WORKOUT_API_ADD_SUCCESS });
         yield call(fetchWorkoutsSaga);
     }
@@ -51,9 +56,11 @@ function* addWorkoutSaga({ payload }) {
 function* editWorkoutSaga({ payload }) {
     try {
         yield put(beginAjaxCall());
+        yield delay(1000)
         yield call(WorkoutService.update, payload.id, payload);
 
         yield call(toast.success, "Item updated successfully.");
+        yield put(closeModal(Modal.EditWorkout));
         yield put({ type: actionTypes.WORKOUT_API_EDIT_SUCCESS });
         yield call(fetchWorkoutsSaga);
     }
