@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom';
 import {
+    NotFound,
     UnAuthorised
 } from '../common';
 
@@ -30,6 +31,7 @@ export default class routes extends Component {
                 <Route path={Constants.Routes.Unauthorised} component={UnAuthorised} />
                 <Route path={Constants.Routes.About} component={AboutPage} />                
                 <PrivateRoute path={Constants.Routes.SecurePage} component={SecurePage} />
+                <Route path='*' component={NotFound} />
             </Switch>
         )
     }
