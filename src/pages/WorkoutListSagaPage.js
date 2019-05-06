@@ -25,6 +25,7 @@ import {
     openModal
 } from '../actions/modalActions'
 import { Modal } from '../utilities/constants'
+import { getModalOpenById } from '../reducers/modalSelectors'
 
 export class WorkoutListSagaPage extends Component {
 
@@ -112,8 +113,8 @@ const mapStateToProps = (state) => {
         items: state.workoutsFromApi.workouts,
         error: state.workoutsFromApi.error,
         isSubmitting: state.workoutsFromApi.isSubmitting,
-        isEditModalOpen: state.modal.EditWorkoutModal,
-        isAddModalOpen: state.modal.AddWorkoutModal,
+        isEditModalOpen: getModalOpenById(state, Modal.EditWorkout),
+        isAddModalOpen: getModalOpenById(state, Modal.AddWorkout),
     };
 };
 
