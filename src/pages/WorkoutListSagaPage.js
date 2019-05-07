@@ -45,18 +45,10 @@ export class WorkoutListSagaPage extends Component {
         toggleFunc(Modal.EditWorkout)
     }
 
-    showAddNew = () => {
-        this.toggleAdd();
-    }
-
     showEdit = (item) => {
         this.toggleEdit();
         item.date = Moment(item.date).toDate()
         this.setState({ dataItem: Object.assign({}, item) });
-    }
-
-    handleAddNew = (values) => {
-        this.props.addWorkout(values);
     }
 
     handleDelete = (id) => {
@@ -65,23 +57,21 @@ export class WorkoutListSagaPage extends Component {
         }
     }
 
-    handleEdit = (values) => {
-        this.props.editWorkout(values);
-    }
-
     render() {
         const {
             items,
             error,
             isSubmitting,
             isAddModalOpen,
-            isEditModalOpen
+            isEditModalOpen,
+            addWorkout,
+            editWorkout
         } = this.props;
 
         return (
             <Container>
                 <h1>Workouts (Redux-Saga)</h1>
-                <Button onClick={this.showAddNew} color="link">Add New Workout</Button>
+                <Button onClick={this.toggleAdd} color="link">Add New Workout</Button>
                 <WorkoutList
                     items={items}
                     handleDelete={this.handleDelete}
@@ -90,7 +80,7 @@ export class WorkoutListSagaPage extends Component {
                     <WorkoutAddFormik
                         toggle={this.toggleAdd}
                         modal={isAddModalOpen}
-                        onAddNew={this.handleAddNew}
+                        onAddNew={addWorkout}
                         error={error}
                         isSubmitting={isSubmitting} />
                 }
@@ -99,7 +89,7 @@ export class WorkoutListSagaPage extends Component {
                         toggle={this.toggleEdit}
                         modal={isEditModalOpen}
                         item={this.state.dataItem}
-                        onEdit={this.handleEdit}
+                        onEdit={editWorkout}
                         error={error}
                         isSubmitting={isSubmitting} />
                 }
@@ -110,9 +100,9 @@ export class WorkoutListSagaPage extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        items: state.workoutsFromApi.workouts,
-        error: state.workoutsFromApi.error,
-        isSubmitting: state.workoutsFromApi.isSubmitting,
+        items: state.workoutsWithRoutine.workouts,
+        error: state.workoutsWithRoutine.error,
+        isSubmitting: state.workoutsWithRoutine.isSubmitting,
         isEditModalOpen: getModalOpenById(state, Modal.EditWorkout),
         isAddModalOpen: getModalOpenById(state, Modal.AddWorkout),
     };

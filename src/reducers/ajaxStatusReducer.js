@@ -5,11 +5,12 @@ var initialState = {
 }
 
 function actionTypeEndsInInSuccess(type) {
-    return type.substring(type.length - 8) === '_SUCCESS';
+    return type.substring(type.length - 7) === 'SUCCESS';
 }
 
 function actionTypeEndsInInError(type) {
-    return type.substring(type.length - 6) === '_ERROR';
+    return (type.substring(type.length - 6) === '_ERROR' 
+        || type.substring(type.length - 7) === 'FAILURE');
 }
 
 const ajaxStatusReducer = (state = initialState.numberOfAjaxCall, action) => {

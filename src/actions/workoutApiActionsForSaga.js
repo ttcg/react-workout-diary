@@ -1,11 +1,17 @@
 import * as actionTypes from "./actionTypes";
+import { createRoutine } from 'redux-saga-routines';
 
-export const addWorkout = (item) => ({ type: actionTypes.WORKOUT_API_ADD_BEGIN, payload: item });
+export const WORKOUT_ADD = "WORKOUT_ADD";
+export const WORKOUT_FETCH = "WORKOUT_FETCH";
+export const WORKOUT_DELETE = "WORKOUT_DELETE";
+export const WORKOUT_EDIT = "WORKOUT_EDIT";
 
-export const editWorkout = (item) => ({ type: actionTypes.WORKOUT_API_EDIT_BEGIN, payload: item });
+export const addWorkout = createRoutine(WORKOUT_ADD);
 
-export const deleteWorkout = (id) => ({ type: actionTypes.WORKOUT_API_DELETE_BEGIN, id: id });
+export const fetchWorkouts = createRoutine(WORKOUT_FETCH);
 
-export const fetchWorkouts = () => ({ type: actionTypes.WORKOUT_API_FETCH_BEGIN });
+export const editWorkout = createRoutine(WORKOUT_EDIT);
+
+export const deleteWorkout = createRoutine(WORKOUT_DELETE);
 
 export const clearError = () => ({ type: actionTypes.WORKOUT_API_CLEAR_ERROR });

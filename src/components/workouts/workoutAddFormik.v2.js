@@ -72,7 +72,7 @@ export default class workoutAddFormik extends Component {
                             <ModalBody>
                                 {error &&
                                     <Alert color="danger">
-                                        {error.statusText}
+                                        {error.errorMessage}
                                     </Alert>
                                 }
                                 <Form>
