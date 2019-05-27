@@ -16,7 +16,7 @@ import {
     deleteWorkout
 } from '../actions/workoutApiActionsForSaga';
 
-function* fetchWorkoutsSaga() {
+export function* fetchWorkoutsSaga() {
     yield put(beginAjaxCall());
 
     var json = yield call(WorkoutService.getAll);
@@ -24,7 +24,7 @@ function* fetchWorkoutsSaga() {
     yield put(fetchWorkouts.success(json));
 }
 
-function* deleteWorkoutSaga({ payload: id }) {
+export function* deleteWorkoutSaga({ payload: id }) {
     try {
         yield put(beginAjaxCall());
         yield call(WorkoutService.remove, id);
@@ -40,7 +40,7 @@ function* deleteWorkoutSaga({ payload: id }) {
     }
 }
 
-function* addWorkoutSaga({ payload }) {
+export function* addWorkoutSaga({ payload }) {
     try {
         yield put(beginAjaxCall());
         
@@ -48,7 +48,7 @@ function* addWorkoutSaga({ payload }) {
         if (payload.calories < 50)
             payload.calories = '';
 
-        yield delay(1000)
+        yield delay(1000);
         yield call(WorkoutService.add, payload);
 
         yield call(toast.success, "Item added successfully.");
