@@ -43,7 +43,7 @@ export function* deleteWorkoutSaga({ payload: id }) {
 export function* addWorkoutSaga({ payload }) {
     try {
         yield put(beginAjaxCall());
-        
+
         // throw error intentionally for calories lower than 50
         if (payload.calories < 50)
             payload.calories = '';
@@ -62,10 +62,9 @@ export function* addWorkoutSaga({ payload }) {
     }
 }
 
-function* editWorkoutSaga({ payload }) {
+export function* editWorkoutSaga({ payload }) {
     try {
         yield put(beginAjaxCall());
-        yield delay(1000)
         yield call(WorkoutService.update, payload.id, payload);
 
         yield call(toast.success, "Item updated successfully.");
