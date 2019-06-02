@@ -10,7 +10,6 @@ exports[`renders without crashing 1`] = `
 >
   <Link
     className="navbar-brand"
-    replace={false}
     to="/"
   >
     React Workout Diary
@@ -50,7 +49,6 @@ exports[`renders without crashing 1`] = `
       >
         <NavLink
           activeClassName="active"
-          aria-current="page"
           className="nav-link"
           exact={true}
           to="/"
@@ -63,7 +61,6 @@ exports[`renders without crashing 1`] = `
       >
         <NavLink
           activeClassName="active"
-          aria-current="page"
           className="nav-link"
           exact={true}
           to="/workoutsapi"
@@ -76,7 +73,6 @@ exports[`renders without crashing 1`] = `
       >
         <NavLink
           activeClassName="active"
-          aria-current="page"
           className="nav-link"
           exact={true}
           to="/workoutsaga"
@@ -89,7 +85,6 @@ exports[`renders without crashing 1`] = `
       >
         <NavLink
           activeClassName="active"
-          aria-current="page"
           className="nav-link"
           exact={true}
           to="/workouts"
@@ -102,7 +97,6 @@ exports[`renders without crashing 1`] = `
       >
         <NavLink
           activeClassName="active"
-          aria-current="page"
           className="nav-link"
           exact={true}
           to="/workoutsreact"
@@ -115,7 +109,6 @@ exports[`renders without crashing 1`] = `
       >
         <NavLink
           activeClassName="active"
-          aria-current="page"
           className="nav-link"
           exact={true}
           to="/about"

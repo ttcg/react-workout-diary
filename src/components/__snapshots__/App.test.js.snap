@@ -1,7 +1,39 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders without crashing 1`] = `
-<ContextConsumer>
-  <Component />
-</ContextConsumer>
+<BrowserRouter>
+  <Header />
+  <div
+    className="content"
+  >
+    <routes />
+  </div>
+  <ToastContainer
+    autoClose={2000}
+    bodyClassName={null}
+    className={null}
+    closeButton={
+      <CloseButton
+        ariaLabel="close"
+      />
+    }
+    closeOnClick={true}
+    draggable={true}
+    draggablePercent={80}
+    hideProgressBar={false}
+    newestOnTop={false}
+    pauseOnFocusLoss={true}
+    pauseOnHover={true}
+    position="top-right"
+    progressClassName={null}
+    progressStyle={null}
+    role="alert"
+    rtl={false}
+    style={null}
+    toastClassName={null}
+    transition={[Function]}
+  />
+  <Footer />
+  <Connect(loadingSpinner) />
+</BrowserRouter>
 `;

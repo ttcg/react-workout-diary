@@ -21,8 +21,11 @@ exports[`renders without crashing 1`] = `
   }
   onClosed={[Function]}
   onOpened={[Function]}
+  returnFocusAfterClose={true}
   role="dialog"
+  scrollable={false}
   toggle={[MockFunction]}
+  unmountOnClose={true}
   zIndex={1050}
 >
   <ModalHeader
@@ -89,8 +92,12 @@ exports[`renders without crashing 1`] = `
           renderDayContents={[Function]}
           selected={2019-01-02T00:00:00.000Z}
           shouldCloseOnSelect={true}
+          showMonthYearPicker={false}
+          showTimeInput={false}
           showTimeSelect={false}
+          strictParsing={false}
           timeCaption="Time"
+          timeInputLabel="Time"
           timeIntervals={30}
           withPortal={false}
         />
