@@ -4,11 +4,12 @@ import {
 } from 'reactstrap';
 import ReactMoment from 'react-moment'
 
-const Footer = () =>
-    <footer className="footer">
-        <Container>            
-            <span className="text-muted">&copy; <ReactMoment format='YYYY' /> TTCG</span>
-        </Container>
-    </footer>
-
-export default Footer;
+export default function Footer() {
+    return (
+        <footer className="footer">
+            <Container>
+                <span className="text-muted">&copy; <ReactMoment format='YYYY' /> TTCG</span>
+            </Container>
+        </footer>
+    );
+}
