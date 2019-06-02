@@ -5,6 +5,7 @@ import {
 } from 'reactstrap'
 import { connect } from 'react-redux'
 import { resetWorkouts } from '../actions/workoutApiActions'
+import packageJson from '../../package.json';
 
 class About extends React.PureComponent {
     render() {
@@ -24,6 +25,7 @@ class About extends React.PureComponent {
                         <li>Redux-Thunk</li>
                         <li>Formik</li>
                     </ul>
+                    <p>Current version - <strong>{packageJson.version}</strong></p>
                     <p>The source code can be found on <a href="https://github.com/ttcg/react-workout-diary" target="_blank" rel="noopener noreferrer">github</a></p>
                 </Container>
                 <Container>

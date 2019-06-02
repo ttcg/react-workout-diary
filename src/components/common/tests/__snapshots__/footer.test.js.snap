@@ -8,12 +8,6 @@ exports[`renders without crashing 1`] = `
     tag="div"
   >
     <span
-      className="text-muted float-right"
-    >
-      v 
-      0.10.0
-    </span>
-    <span
       className="text-muted"
     >
       © 
