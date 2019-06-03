@@ -5,7 +5,10 @@ import {
     UnAuthorised
 } from '../common';
 
-import { WorkoutsReact } from '../../components/workouts';
+import { 
+    WorkoutsReact,  
+    workoutsReactHooks
+} from '../../components/workouts';
 
 import {
     HomePage,
@@ -26,6 +29,7 @@ export default function Routes() {
             <Route path={Constants.Routes.Workouts} exact component={WorkoutListPage} />
             <Route path={Constants.Routes.WorkoutsApi} exact component={WorkoutListApiPage} />
             <Route path={Constants.Routes.WorkoutsReact} exact component={WorkoutsReact} />
+            <Route path={Constants.Routes.WorkoutsReactHooks} exact component={workoutsReactHooks} />
             <Route path={Constants.Routes.WorkoutsSaga} exact component={WorkoutListSagaPage} />
             <Route path={Constants.Routes.Unauthorised} component={UnAuthorised} />
             <Route path={Constants.Routes.About} component={AboutPage} />

@@ -39,6 +39,9 @@ export default function Header() {
                         <NavLink className="nav-link" activeClassName="active" to={Constants.Routes.WorkoutsReact} exact>Workouts (React)</NavLink>
                     </NavItem>
                     <NavItem>
+                        <NavLink className="nav-link" activeClassName="active" to={Constants.Routes.WorkoutsReactHooks} exact>Workouts (ReactHooks)</NavLink>
+                    </NavItem>
+                    <NavItem>
                         <NavLink className="nav-link" activeClassName="active" to={Constants.Routes.About} exact>About</NavLink>
                     </NavItem>
                 </Nav>

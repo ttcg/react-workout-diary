@@ -111,6 +111,18 @@ exports[`renders without crashing 1`] = `
           activeClassName="active"
           className="nav-link"
           exact={true}
+          to="/workoutsreacthooks"
+        >
+          Workouts (ReactHooks)
+        </NavLink>
+      </NavItem>
+      <NavItem
+        tag="li"
+      >
+        <NavLink
+          activeClassName="active"
+          className="nav-link"
+          exact={true}
           to="/about"
         >
           About
