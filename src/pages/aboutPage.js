@@ -15,7 +15,7 @@ class About extends React.PureComponent {
                 <Container>
                     <h1>About</h1>
                     <p>Demo website which uses React and Redux technology.  It contains basic CRUD activities.</p>
-                    <p>It uses the .Net Core services hosted on GCP and the service can be viewed <a href={process.env.REACT_APP_ServiceUrl} target="_blank" rel="noopener noreferrer">{process.env.REACT_APP_ServiceUrl}</a>.</p>
+                    <p>It uses the .Net Core services hosted on Cloud and the service can be viewed <a href={process.env.REACT_APP_ServiceUrl} target="_blank" rel="noopener noreferrer">{process.env.REACT_APP_ServiceUrl}</a>.</p>
                     <p>This app uses the following libraries:</p>
                     <ul>
                         <li>Axios</li>
